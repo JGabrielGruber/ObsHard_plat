@@ -1,6 +1,7 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import icons from './icons';
+import Arquitetura from '../../models/Arquitetura.model';
 
 export default class TableEn extends React.Component {
 	constructor() {
@@ -22,4 +23,8 @@ export default class TableEn extends React.Component {
 			/>
 		);
 	}
+}
+
+TableEn.protoTypes = {
+	arquitet: Arquitetura.
 }
