@@ -1,0 +1,10 @@
+{
+	"editor.tabSize": 3,
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"eslint.alwaysShowStatus": true,
+	"eslint.format.enable": true,
+	"eslint.nodePath": "../bin/node",
+	"python.venvPath": "../bin/activate",
+	"eslint.enable": true
+}
