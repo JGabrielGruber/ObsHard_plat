@@ -2,7 +2,7 @@
 	"name": "obshard_plat",
 	"version": "0.2.0",
 	"private": true,
-	"homepage": "https://jgabrielgruber.github.io/obshard_plat",
+	"homepage": "https://jgabrielgruber.github.io/ObsHard_plat",
 	"dependencies": {
 		"@material-ui/core": "^4.11.0",
 		"@material-ui/icons": "^4.9.1",

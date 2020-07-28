@@ -10,7 +10,7 @@ import AppContainer from './containers/App.container';
 initializeFirebase();
 
 ReactDOM.render(
-	<Router basename={process.env.PUBLIC_URL}>
+	<Router>
 		<Switch>
 			<Route path="/" component={AppContainer} />
 		</Switch>
