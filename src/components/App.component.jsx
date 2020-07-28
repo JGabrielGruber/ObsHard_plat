@@ -6,6 +6,7 @@ import MarcaContainer from '../containers/Marca.container';
 import ModeloContainer from '../containers/Modelo.container';
 import Loja from '../models/Loja.model';
 import LojaContainer from '../containers/Loja.container';
+import VariacaoContainer from '../containers/Variacao.container';
 
 class App extends React.Component {
 	constructor(props) {
@@ -29,6 +30,7 @@ class App extends React.Component {
 						<Route path="/loja" component={LojaContainer} />
 						<Route path="/marca" component={MarcaContainer} />
 						<Route path="/modelo" component={ModeloContainer} />
+						<Route path="/variacao" component={VariacaoContainer} />
 					</Switch>
 				</Container>
 			</ThemeProvider>
