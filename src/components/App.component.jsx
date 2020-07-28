@@ -14,7 +14,7 @@ class App extends React.Component {
 		return (
 			<Container>
 				<Switch>
-			<Container ref={this.accountMenuElementRef}>
+					<Route path="/arquitetura" component={ArquiteturaContainer} />
 				</Switch>
 			</Container>
 		);
