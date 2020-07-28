@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/ObsHard_plat/static/js/main.add1c6fb.chunk.js",
-    "main.js.map": "/ObsHard_plat/static/js/main.add1c6fb.chunk.js.map",
+    "main.js": "/ObsHard_plat/static/js/main.eab7093e.chunk.js",
+    "main.js.map": "/ObsHard_plat/static/js/main.eab7093e.chunk.js.map",
     "runtime-main.js": "/ObsHard_plat/static/js/runtime-main.0dc4030c.js",
     "runtime-main.js.map": "/ObsHard_plat/static/js/runtime-main.0dc4030c.js.map",
     "static/js/2.12daf6d2.chunk.js": "/ObsHard_plat/static/js/2.12daf6d2.chunk.js",
     "static/js/2.12daf6d2.chunk.js.map": "/ObsHard_plat/static/js/2.12daf6d2.chunk.js.map",
     "index.html": "/ObsHard_plat/index.html",
-    "precache-manifest.558a369171e28bdfa6d2dc94ba26b433.js": "/ObsHard_plat/precache-manifest.558a369171e28bdfa6d2dc94ba26b433.js",
+    "precache-manifest.76a03891ad9395d3c3449155e9332d6a.js": "/ObsHard_plat/precache-manifest.76a03891ad9395d3c3449155e9332d6a.js",
     "service-worker.js": "/ObsHard_plat/service-worker.js",
     "static/js/2.12daf6d2.chunk.js.LICENSE.txt": "/ObsHard_plat/static/js/2.12daf6d2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0dc4030c.js",
     "static/js/2.12daf6d2.chunk.js",
-    "static/js/main.add1c6fb.chunk.js"
+    "static/js/main.eab7093e.chunk.js"
   ]
 }
