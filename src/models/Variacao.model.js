@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Modelo from './Modelo';
+import Modelo from './Modelo.model';
 
 class Variacao {
 	Variacao() {

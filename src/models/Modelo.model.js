@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Marca from './Marca';
+import Marca from './Marca.model';
 import Arquitetura from './Arquitetura.model';
 
 class Modelo {
