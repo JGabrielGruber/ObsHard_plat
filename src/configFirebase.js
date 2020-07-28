@@ -18,4 +18,4 @@ export default function initializeFirebase() {
 	return firebase.app;
 }
 
-export const db = firebase.firestore();
+export const db = firebase.database();
