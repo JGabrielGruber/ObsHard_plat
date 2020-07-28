@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Container } from '@material-ui/core';
 import User from '../models/User.model';
-import RACI from '../models/RACI.model';
 
 class App extends React.Component {
 	constructor(props) {
@@ -140,7 +139,7 @@ App.propTypes = {
 		title: PropTypes.string.isRequired,
 	})),
 	stateLogin: PropTypes.string,
-	raci: PropTypes.shape(RACI),
+	raci: PropTypes.object,
 	onLogin: PropTypes.func.isRequired,
 	onSignup: PropTypes.func.isRequired,
 	onLogout:  PropTypes.func.isRequired,
