@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Loja from './Loja';
-import Variacao from './Variacao';
+import Loja from './Loja.model';
+import Variacao from './Variacao.model';
 
 class Produto {
 	Produto() {

@@ -1,148 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import { Container } from '@material-ui/core';
-import User from '../models/User.model';
+import { withRouter, Route, Switch } from 'react-router-dom';
+import { Container, ThemeProvider, createMuiTheme } from '@material-ui/core';
+import ArquiteturaContainer from '../containers/Arquitetura.container';
+import MarcaContainer from '../containers/Marca.container';
+import ModeloContainer from '../containers/Modelo.container';
+import LojaContainer from '../containers/Loja.container';
+import VariacaoContainer from '../containers/Variacao.container';
+import ProdutoContainer from '../containers/Produto.container';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			accountMenuElement: null,
-			notiticationMenuElement: null,
-			isSideMenuOpen: false,
-			isAccountMenuOpen: false,
-			isNotitificationMenuOpen: false,
-			isLoginPopupOpen: false,
-			isSignupPopupOpen: false,
-			isRecoveryPopupOpen: false,
-		};
-		this.accountMenuElementRef = React.createRef();
-	}
 
-	accountHandler = (event) => {
-		console.log(event);
-	}
-
-	accountMenuHandler = (event) => {
-		event.persist();
-		this.setState((prevState) => ({
-			accountMenuElement: event.target,
-			isAccountMenuOpen: !prevState.isAccountMenuOpen,
-		}));
-	}
-
-	notificationMenuHandler = (event) => {
-		event.persist();
-		this.setState((prevState) => ({
-			notiticationMenuElement: event.target,
-			isNotitificationMenuOpen: !prevState.isNotitificationMenuOpen,
-		}));
-	}
-
-	sideMenuHandler = () => {
-		this.setState((prevState) => ({
-			isSideMenuOpen: !prevState.isSideMenuOpen,
-		}));
-	}
-
-	loginHandler = () => {
-		this.setState((prevState) => ({
-			isLoginPopupOpen: !prevState.isLoginPopupOpen,
-		}));
-	}
-
-	signupHandler = () => {
-		this.loginHandler();
-		this.setState((prevState) => ({
-			isSignupPopupOpen: !prevState.isSignupPopupOpen,
-		}));
-	}
-
-	recoveryHandler = () => {
-		this.loginHandler();
-		this.setState((prevState) => ({
-			isRecoveryPopupOpen: !prevState.isRecoveryPopupOpen,
-		}));
-	}
-
-	handleLogin = async (login) => {
-		const {
-			onLogin,
-		} = this.props;
-		const log = await onLogin(login);
-		if (log) {
-			this.loginHandler();
-		}
-	}
-
-	handleSignup = async (signup) => {
-		const {
-			onSignup,
-		} = this.props;
-		const sign = await onSignup(signup);
-		if (sign) {
-			this.signupHandler();
-			this.loginHandler();
-		}
-	}
-
-	handlePhoto = (photo) => {
-		console.log(photo);
-		
-	}
-
-	handleRecovery = (recovery) => {
-		console.log(recovery);
-		
+		this.state = {};
 	}
 
 	render() {
-		const {
-			accountMenuElement, notiticationMenuElement, isAccountMenuOpen,
-			isNotitificationMenuOpen, isSideMenuOpen, isLoginPopupOpen,
-			isSignupPopupOpen, isRecoveryPopupOpen,
-		} = this.state;
-		const {
-			user, amountNotification, matrices, notifications, stateLogin, raci,
-			onLogout,
-		} = this.props;
+		const theme = createMuiTheme({
+			palette: {
+				type: 'dark',
+			},
+		});
 
 		return (
-			<Container ref={this.accountMenuElementRef}>
-			</Container>
+			<ThemeProvider theme={theme}>
+				<Container>
+					<Switch>
+						<Route path="/arquitetura" component={ArquiteturaContainer} />
+						<Route path="/loja" component={LojaContainer} />
+						<Route path="/marca" component={MarcaContainer} />
+						<Route path="/modelo" component={ModeloContainer} />
+						<Route path="/produto" component={ProdutoContainer} />
+						<Route path="/variacao" component={VariacaoContainer} />
+					</Switch>
+				</Container>
+			</ThemeProvider>
 		);
 	}
 }
 
-App.defaultProps = {
-	user: null,
-	amountNotification: 0,
-	matrices: [],
-	notifications: [],
-	stateLogin: 'NOT_LOGGED',
-	raci: {
-		title: 'Minha Matriz RACI',
-		users: [],
-	},
-};
-
-App.propTypes = {
-	user: PropTypes.shape(User),
-	amountNotification: PropTypes.number,
-	matrices: PropTypes.arrayOf(PropTypes.shape({
-		uid: PropTypes.string.isRequired,
-		title: PropTypes.string.isRequired,
-	})),
-	notifications: PropTypes.arrayOf(PropTypes.shape({
-		uid: PropTypes.string.isRequired,
-		title: PropTypes.string.isRequired,
-	})),
-	stateLogin: PropTypes.string,
-	raci: PropTypes.object,
-	onLogin: PropTypes.func.isRequired,
-	onSignup: PropTypes.func.isRequired,
-	onLogout:  PropTypes.func.isRequired,
-};
-
-export default App;
+export default withRouter(App);
