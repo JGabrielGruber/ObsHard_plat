@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "94c38d54066122249d8614c4d8986a54",
+    "revision": "7a63122e64ab2821a4d9beadae4f4f05",
     "url": "/obshard_plat/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/obshard_plat/static/js/2.7b91b51d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c96d352d5bfabd6da7f3",
-    "url": "/obshard_plat/static/js/main.28915de2.chunk.js"
+    "revision": "607a2a719b7dbb6e52b8",
+    "url": "/obshard_plat/static/js/main.8cf07817.chunk.js"
   },
   {
     "revision": "39dd93e325fc0f7b1811",

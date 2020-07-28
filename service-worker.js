@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/obshard_plat/precache-manifest.7b1ee63f65de1277937a7adf27227614.js"
+  "/obshard_plat/precache-manifest.690cb74e58bcc9d23f525e23bc81231a.js"
 );
 
 self.addEventListener('message', (event) => {

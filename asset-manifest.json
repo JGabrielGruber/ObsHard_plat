@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/obshard_plat/static/js/main.28915de2.chunk.js",
-    "main.js.map": "/obshard_plat/static/js/main.28915de2.chunk.js.map",
+    "main.js": "/obshard_plat/static/js/main.8cf07817.chunk.js",
+    "main.js.map": "/obshard_plat/static/js/main.8cf07817.chunk.js.map",
     "runtime-main.js": "/obshard_plat/static/js/runtime-main.716f9b51.js",
     "runtime-main.js.map": "/obshard_plat/static/js/runtime-main.716f9b51.js.map",
     "static/js/2.7b91b51d.chunk.js": "/obshard_plat/static/js/2.7b91b51d.chunk.js",
     "static/js/2.7b91b51d.chunk.js.map": "/obshard_plat/static/js/2.7b91b51d.chunk.js.map",
     "index.html": "/obshard_plat/index.html",
-    "precache-manifest.7b1ee63f65de1277937a7adf27227614.js": "/obshard_plat/precache-manifest.7b1ee63f65de1277937a7adf27227614.js",
+    "precache-manifest.690cb74e58bcc9d23f525e23bc81231a.js": "/obshard_plat/precache-manifest.690cb74e58bcc9d23f525e23bc81231a.js",
     "service-worker.js": "/obshard_plat/service-worker.js",
     "static/js/2.7b91b51d.chunk.js.LICENSE.txt": "/obshard_plat/static/js/2.7b91b51d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.716f9b51.js",
     "static/js/2.7b91b51d.chunk.js",
-    "static/js/main.28915de2.chunk.js"
+    "static/js/main.8cf07817.chunk.js"
   ]
 }
