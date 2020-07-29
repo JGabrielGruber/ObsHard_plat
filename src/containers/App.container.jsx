@@ -33,7 +33,7 @@ class AppContainer extends React.Component {
 				stateLogin={stateLogin}
 				user={user}
 				onLogin={UserRepository.login}
-				onSignup={UserRepository.signup}
+				onSignup={() => {}}
 				onLogout={UserRepository.logout}
 			/>
 		);

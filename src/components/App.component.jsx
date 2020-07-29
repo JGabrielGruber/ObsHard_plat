@@ -41,14 +41,6 @@ class App extends React.Component {
 		console.log(event);
 	}
 
-	matricesHandler = (raci) => {
-		const {
-			history,
-		} = this.props;
-		history.push(`/${raci.uid}/`);
-		window.location.reload(false);
-	}
-
 	accountMenuHandler = (event) => {
 		event.persist();
 		this.setState((prevState) => ({
@@ -122,10 +114,10 @@ class App extends React.Component {
 
 	handleMenu = (obj) => {
 		const {
-			history, match,
+			history,
 		} = this.props;
 
-		history.push(`/${match.params.raci}/${obj.key}`);
+		history.push(`/${obj.key}`);
 	}
 
 	handleFormsList = (obj) => {
@@ -148,7 +140,7 @@ class App extends React.Component {
 			isSignupPopupOpen, isRecoveryPopupOpen,
 		} = this.state;
 		const {
-			user, amountNotification, matrices, users, notifications, stateLogin, raci,
+			user, amountNotification, matrices, users, notifications, stateLogin,
 			onLogout,
 		} = this.props;
 

@@ -153,17 +153,6 @@ class Login extends React.Component {
 												</Typography>
 											</Button>
 										</Grid>
-										<Grid item>
-											<Button
-												color="primary"
-												variant="text"
-												onClick={onCreateA}
-											>
-												<Typography variant="body2">
-													Criar uma conta
-												</Typography>
-											</Button>
-										</Grid>
 									</Grid>
 								</CardActions>
 							</Card>
