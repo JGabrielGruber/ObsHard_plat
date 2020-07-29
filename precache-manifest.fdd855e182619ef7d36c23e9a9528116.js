@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fa59ee8d3873e3d2f2717a2b5150d5f1",
+    "revision": "a7d0afbe14e819a0a65b9724daeb25f6",
     "url": "/ObsHard_plat/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ObsHard_plat/static/js/2.5408aed2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8facaca7836443b74497",
-    "url": "/ObsHard_plat/static/js/main.f7cc8120.chunk.js"
+    "revision": "adc5c9c11bb2ec884b90",
+    "url": "/ObsHard_plat/static/js/main.8c5a184e.chunk.js"
   },
   {
     "revision": "7f7f25e02db86e0884ba",
