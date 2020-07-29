@@ -20,6 +20,7 @@ import SignupComponent from './popups/Signup.component';
 import RecoveryComponent from './popups/Recovery.component';
 import User from '../models/User.model';
 import SideMenu from './side/SideMenu.component';
+import CategoriaContainer from '../containers/Categoria.container';
 
 class App extends React.Component {
 	constructor(props) {
@@ -208,6 +209,10 @@ class App extends React.Component {
 				tag: 'arquiteturas',
 			},
 			{
+				title: 'Categorias',
+				tag: 'categorias',
+			},
+			{
 				title: 'Lojas',
 				tag: 'lojas',
 			},
@@ -257,6 +262,7 @@ class App extends React.Component {
 							<main style={{ paddingLeft: isSideMenuOpen ? 200 : 40 }}>
 								<Switch>
 									<Route path="/arquiteturas" component={ArquiteturaContainer} />
+									<Route path="/categorias" component={CategoriaContainer} />
 									<Route path="/lojas" component={LojaContainer} />
 									<Route path="/marcas" component={MarcaContainer} />
 									<Route path="/modelos" component={ModeloContainer} />
