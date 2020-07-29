@@ -3,6 +3,7 @@ import React from 'react';
 import Arquitetura from '../components/Arquitetura.component';
 
 import ArquiteturaRepository from '../repositories/Arquitetura.repository';
+import CategoriaRepository from '../repositories/Categoria.repository';
 
 class ArquiteturaContainer extends React.Component {
 	constructor(props) {
@@ -10,11 +11,13 @@ class ArquiteturaContainer extends React.Component {
 
 		this.state = {
 			arquiteturas: [],
+			categorias: [],
 		};
 	}
 
 	componentDidMount() {
 		ArquiteturaRepository.sync('arquiteturas', this.handleChange);
+		CategoriaRepository.sync('categorias', this.handleList);
 	}
 
 	handleChange = (key, value, index) => {
@@ -31,6 +34,16 @@ class ArquiteturaContainer extends React.Component {
 		}
 	}
 
+	handleList = (key, value) => {
+		const ar = this.state[key];
+		value.forEach(item => {
+			ar[item._id] = item.nome;
+		});
+		this.setState({
+			[key]: ar,
+		});
+	}
+
 	add = (arquitetura) => {
 		ArquiteturaRepository.add(arquitetura);
 	}
@@ -45,7 +58,7 @@ class ArquiteturaContainer extends React.Component {
 
 	render() {
 		const {
-			arquiteturas,
+			arquiteturas, categorias,
 		} = this.state;
 
 		return (
@@ -56,6 +69,7 @@ class ArquiteturaContainer extends React.Component {
 					onUpdate: this.update,
 					onDelete: this.delete,
 				}}
+				categorias={categorias}
 			/>
 		);
 	}

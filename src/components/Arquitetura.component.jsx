@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 import PropTypes from 'prop-types';
 import icons from './icons';
 import Arquitetura from '../models/Arquitetura.model';
+import Categoria from '../models/Categoria.model';
 
 export default class ArquiteturaComponent extends React.Component {
 	constructor() {
@@ -12,11 +13,12 @@ export default class ArquiteturaComponent extends React.Component {
 	}
 
 	render() {
-		const { actions, arquiteturas } = this.props;
+		const { actions, arquiteturas, categorias } = this.props;
 
 		const columns = [
 			{ title: 'Nome', field: 'nome' },
 			{ title: 'Ano', field: 'ano', type: 'numeric' },
+			{ title: 'Categorias', field: 'categorias', lookup: categorias },
 		];
 
 		return (
@@ -66,4 +68,5 @@ ArquiteturaComponent.protoTypes = {
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
 	}),
+	categorias: PropTypes.arrayOf(new Categoria().Categoria()),
 };
