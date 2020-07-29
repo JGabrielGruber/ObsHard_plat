@@ -10,7 +10,7 @@ export default function Notification({
 }) {
 	return (
 		<Tooltip title="Notificações" onClick={onClick}>
-			<IconButton>
+			<IconButton color="inherit">
 				{
 					amount > 0 ? (
 						<Badge max={9} badgeContent={amount} color="error">

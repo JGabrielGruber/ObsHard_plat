@@ -128,11 +128,69 @@ class App extends React.Component {
 	}
 
 	render() {
-		const theme = createMuiTheme({
+		const theme = createMuiTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? {
 			palette: {
 				type: 'dark',
+				primary: {
+					light: '#a6d4fa',
+					main: '#90caf9',
+					dark: '#648dae',
+					contrastText: '#000',
+				},
+				secondary: {
+					light: '#f2aeae',
+					main: '#ef9a9a',
+					dark: '#a76b6b',
+					contrastText: '#000',
+				},
+			},
+			overrides: {
+				MuiToolbar: {
+					root: {
+						backgroundColor: '#313131',
+						color: '#fff',
+					},
+				},
+				MuiDrawer: {
+					paper: {
+						backgroundColor: '#242424',
+					},
+				},
+				MuiTable: {
+					root: {
+						backgroundColor: '#242424',
+					},
+				},
+				MuiTableHead: {
+					rooo: {
+						backgroundColor: '#242424',
+					},
+				},
+				MuiTableRow: {
+					head: {
+						backgroundColor: '#242424',
+					},
+				},
+			},
+		} : {
+			palette: {
+				type: 'light',
+				primary: {
+					light: '#5393ff',
+					main: '#2979ff',
+					dark: '#1c54b2',
+					contrastText: '#fff',
+				},
+				secondary: {
+					light: '#ff7474',
+					main: '#ff5252',
+					dark: '#b23939',
+					contrastText: '#fff',
+				},
 			},
 		});
+
+		document.body.style = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'background: #1f1f1f;' : 'background: #FFF;';
 
 		const {
 			accountMenuElement, notiticationMenuElement, isAccountMenuOpen,
