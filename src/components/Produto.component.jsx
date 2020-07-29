@@ -1,6 +1,9 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import PropTypes from 'prop-types';
+import { TextField } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import icons from './icons';
 import Produto from '../models/Produto.model';
 import Loja from '../models/Loja.model';
@@ -21,8 +24,77 @@ export default class ProdutoComponent extends React.Component {
 
 		const columns = [
 			{ title: 'Loja', field: 'loja', lookup: lojas },
-			{ title: 'Modelo', field: 'marca', lookup: modelos },
-			{ title: 'Variacao', field: 'variacao', lookup: variacoes },
+			{
+				title: 'Modelo',
+				field: 'marca',
+				lookup: modelos,
+				editComponent: (props) => (
+					<Autocomplete
+						options={Object.keys(modelos)}
+						getOptionLabel={(option) => option}
+						style={{ width: 200 }}
+						renderOption={(option) => (
+							<>
+								{modelos[option]}
+							</>
+						)}
+						filterOptions={
+							(options, { inputValue }) => Object.keys(modelos).filter((i) => (
+								modelos[i].includes(inputValue)
+							))
+						}
+						renderInput={(params) => <TextField {...params} />}
+						defaultValue={props.value}
+						onInputChange={(e, v) => {
+							props.onChange(v);
+						}}
+					/>
+				)
+				/* return (
+						<Select
+							value={props.value}
+							onChange={(e) => props.onChange(e.target.value)}
+						>
+							{Object.keys(modelos).map((item) => (
+								<MenuItem
+									key={item}
+									value={item}
+									title={modelos[item]}
+								>
+									{modelos[item]}
+								</MenuItem>
+							))}
+						</Select>
+					); */
+				,
+			},
+			{
+				title: 'Variacao',
+				field: 'variacao',
+				lookup: variacoes,
+				editComponent: (props) => (
+					<Autocomplete
+						options={Object.keys(variacoes)}
+						getOptionLabel={(option) => option}
+						style={{ width: 200 }}
+						renderOption={(option) => (
+							<>
+								{variacoes[option]}
+							</>
+						)}
+						filterOptions={
+							(options, { inputValue }) => Object.keys(variacoes).filter((i) => (
+								variacoes[i].includes(inputValue)
+							))
+						}
+						renderInput={(params) => <TextField {...params} />}
+						defaultValue={props.value}
+						onInputChange={(e, v) => {
+							props.onChange(v);
+						}}
+					/>
+				),
+			},
 			{ title: 'Link', field: 'link', type: 'string' },
 			{ title: 'Status', field: 'status', lookup: { ok: 'ok' } },
 		];
