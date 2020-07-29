@@ -61,7 +61,7 @@ class Login extends React.Component {
 		const { email, password, remember } = this.state;
 
 		const {
-			classes, open, onClose, onCreateA, onPasswordR,
+			classes, open, onClose, onPasswordR,
 		} = this.props;
 
 		return (
@@ -171,7 +171,6 @@ Login.propTypes = {
 	onClose: PropTypes.func.isRequired,
 	onLogin: PropTypes.func.isRequired,
 	onPasswordR: PropTypes.func.isRequired,
-	onCreateA: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Login);

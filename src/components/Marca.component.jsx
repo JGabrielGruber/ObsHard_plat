@@ -24,19 +24,19 @@ export default class MarcaComponent extends React.Component {
 				columns={columns}
 				data={marcas}
 				editable={{
-					onRowAdd: (newData) => new Promise((resolve, reject) => {
+					onRowAdd: (newData) => new Promise((resolve) => {
 						setTimeout(() => {
 							actions.onAdd(newData);
 							resolve();
 						}, 1000);
 					}),
-					onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
+					onRowUpdate: (newData, oldData) => new Promise((resolve) => {
 						setTimeout(() => {
 							actions.onUpdate(newData, oldData);
 							resolve();
 						}, 1000);
 					}),
-					onRowDelete: (oldData) => new Promise((resolve, reject) => {
+					onRowDelete: (oldData) => new Promise((resolve) => {
 						setTimeout(() => {
 							actions.onDelete(oldData);
 							resolve();
