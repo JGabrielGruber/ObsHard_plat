@@ -5,6 +5,7 @@ import Produto from '../components/Produto.component';
 import ProdutoRepository from '../repositories/Produto.repository';
 import LojaRepository from '../repositories/Loja.repository';
 import VariacaoRepository from '../repositories/Variacao.repository';
+import ModeloRepository from '../repositories/Modelo.repository';
 
 class ProdutoContainer extends React.Component {
 	constructor(props) {
@@ -14,12 +15,14 @@ class ProdutoContainer extends React.Component {
 			produtos: [],
 			lojas: {},
 			variacoes: {},
+			modelos: {},
 		};
 	}
 
 	componentDidMount() {
 		ProdutoRepository.sync('produtos', this.handleChange);
 		LojaRepository.sync('lojas', this.handleList);
+		ModeloRepository.sync('modelos', this.handleList);
 		VariacaoRepository.sync('variacoes', this.handleList);
 	}
 
@@ -63,6 +66,7 @@ class ProdutoContainer extends React.Component {
 		const {
 			produtos,
 			lojas,
+			modelos,
 			variacoes,
 		} = this.state;
 
@@ -76,6 +80,7 @@ class ProdutoContainer extends React.Component {
 				}}
 				lojas={lojas}
 				variacoes={variacoes}
+				modelos={modelos}
 			/>
 		);
 	}

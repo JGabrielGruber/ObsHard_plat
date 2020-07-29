@@ -3,7 +3,6 @@ import React from 'react';
 import Variacao from '../components/Variacao.component';
 
 import VariacaoRepository from '../repositories/Variacao.repository';
-import ModeloRepository from '../repositories/Modelo.repository';
 
 class VariacaoContainer extends React.Component {
 	constructor(props) {
@@ -12,13 +11,11 @@ class VariacaoContainer extends React.Component {
 		this.state = {
 			variacoes: [],
 			arquiteturas: {},
-			modelos: {},
 		};
 	}
 
 	componentDidMount() {
 		VariacaoRepository.sync('variacoes', this.handleChange);
-		ModeloRepository.sync('modelos', this.handleList);
 	}
 
 	handleChange = (key, value, index) => {
@@ -33,16 +30,6 @@ class VariacaoContainer extends React.Component {
 				[key]: value || undefined,
 			});
 		}
-	}
-
-	handleList = (key, value) => {
-		const ar = this.state[key];
-		value.forEach(item => {
-			ar[item._id] = item.nome;
-		});
-		this.setState({
-			[key]: ar,
-		});
 	}
 
 	add = (marca) => {
@@ -60,7 +47,6 @@ class VariacaoContainer extends React.Component {
 	render() {
 		const {
 			variacoes,
-			modelos,
 		} = this.state;
 
 		return (
@@ -71,7 +57,6 @@ class VariacaoContainer extends React.Component {
 					onUpdate: this.update,
 					onDelete: this.delete,
 				}}
-				modelos={modelos}
 			/>
 		);
 	}

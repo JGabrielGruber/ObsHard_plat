@@ -5,6 +5,7 @@ import icons from './icons';
 import Produto from '../models/Produto.model';
 import Loja from '../models/Loja.model';
 import Variacao from '../models/Variacao.model';
+import Modelo from '../models/Modelo.model';
 
 export default class ProdutoComponent extends React.Component {
 	constructor() {
@@ -15,11 +16,12 @@ export default class ProdutoComponent extends React.Component {
 
 	render() {
 		const {
-			actions, produtos, lojas, variacoes,
+			actions, produtos, lojas, modelos, variacoes,
 		} = this.props;
 
 		const columns = [
 			{ title: 'Loja', field: 'loja', lookup: lojas },
+			{ title: 'Modelo', field: 'marca', lookup: modelos },
 			{ title: 'Variacao', field: 'variacao', lookup: variacoes },
 			{ title: 'Link', field: 'link', type: 'string' },
 			{ title: 'Status', field: 'status', lookup: { ok: 'ok' } },
@@ -65,4 +67,5 @@ ProdutoComponent.protoTypes = {
 	}),
 	lojas: PropTypes.objectOf(new Loja().Loja()),
 	variacoes: PropTypes.objectOf(new Variacao().Variacao()),
+	modelos: PropTypes.objectOf(new Modelo().Modelo()),
 };

@@ -3,7 +3,6 @@ import MaterialTable from 'material-table';
 import PropTypes from 'prop-types';
 import icons from './icons';
 import Variacao from '../models/Variacao.model';
-import Modelo from '../models/Modelo.model';
 
 export default class VariacaoComponent extends React.Component {
 	constructor() {
@@ -14,12 +13,11 @@ export default class VariacaoComponent extends React.Component {
 
 	render() {
 		const {
-			actions, variacoes, modelos,
+			actions, variacoes,
 		} = this.props;
 
 		const columns = [
 			{ title: 'Nome', field: 'nome' },
-			{ title: 'Modelo', field: 'marca', lookup: modelos },
 		];
 
 		return (
@@ -60,5 +58,4 @@ VariacaoComponent.protoTypes = {
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
 	}),
-	modelos: PropTypes.objectOf(new Modelo().Modelo()),
 };
