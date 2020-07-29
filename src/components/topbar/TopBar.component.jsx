@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,12 +11,29 @@ import AccountAvatar from './AccountAvatar.component';
 import Notification from './Notification.component';
 import User from '../../models/User.model';
 
-const useStyles = makeStyles(() => ({
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
 	spacer: {
 		flexGrow: 1,
 	},
 	root: {
 		display: 'flex',
+	},
+	appBar: {
+		zIndex: theme.zIndex.drawer + 1,
+		transition: theme.transitions.create(['width', 'margin'], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+	},
+	appBarShift: {
+		marginLeft: drawerWidth,
+		width: `calc(100% - ${drawerWidth}px)`,
+		transition: theme.transitions.create(['width', 'margin'], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
 	},
 }));
 
@@ -33,7 +51,12 @@ export default function TopBar({
 	const classes = useStyles();
 
 	return (
-		<AppBar>
+		<AppBar
+			position="fixed"
+			className={clsx(classes.appBar, {
+				[classes.appBarShift]: isSideMenu,
+			})}
+		>
 			<Toolbar>
 				<Fade in={!isSideMenu}>
 					<Grid container alignItems="center" className={classes.root}>
