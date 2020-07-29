@@ -26,9 +26,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run build
-    - uses: peaceiris/actions-gh-pages@v3
       env:
         REACT_APP_APIKEY: $${{ secrets.REACT_APP_APIKEY }}
+    - uses: peaceiris/actions-gh-pages@v3
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_dir: ./build
