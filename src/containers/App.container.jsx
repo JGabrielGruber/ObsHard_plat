@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 
 import App from '../components/App.component';
+import UserRepository from '../repositories/User.repository';
 
 class AppContainer extends React.Component {
 	constructor(props) {
@@ -31,6 +32,9 @@ class AppContainer extends React.Component {
 			<App
 				stateLogin={stateLogin}
 				user={user}
+				onLogin={UserRepository.login}
+				onSignup={() => {}}
+				onLogout={UserRepository.logout}
 			/>
 		);
 	}
