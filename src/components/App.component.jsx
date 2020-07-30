@@ -203,37 +203,6 @@ class App extends React.Component {
 			onLogout,
 		} = this.props;
 
-		const formsList = [
-			{
-				title: 'Arquiteturas',
-				tag: 'arquiteturas',
-			},
-			{
-				title: 'Categorias',
-				tag: 'categorias',
-			},
-			{
-				title: 'Lojas',
-				tag: 'lojas',
-			},
-			{
-				title: 'Marcas',
-				tag: 'marcas',
-			},
-			{
-				title: 'Modelos',
-				tag: 'modelos',
-			},
-			{
-				title: 'Produtos',
-				tag: 'produtos',
-			},
-			{
-				title: 'Variações',
-				tag: 'variacoes',
-			},
-		];
-
 		return (
 			<ThemeProvider theme={theme}>
 				<Container ref={this.accountMenuElementRef}>
@@ -254,7 +223,6 @@ class App extends React.Component {
 							<SideMenu
 								isSideMenu={isSideMenuOpen}
 								onSideMenu={this.sideMenuHandler}
-								formsList={formsList}
 								onFormsList={this.handleFormsList}
 							/>
 						</Grid>

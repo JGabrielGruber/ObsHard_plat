@@ -4,12 +4,20 @@ import clsx from 'clsx';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
-	IconButton, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText,
+	IconButton, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Icon, Tooltip,
 } from '@material-ui/core';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListIcon from '@material-ui/icons/List';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
+import ComputerIcon from '@material-ui/icons/Computer';
+import DevicesIcon from '@material-ui/icons/Devices';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import BusinessIcon from '@material-ui/icons/Business';
+import { useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -40,15 +48,17 @@ const useStyles = makeStyles((theme) => ({
 		overflowX: 'hidden',
 		width: theme.spacing(7) + 1,
 		[theme.breakpoints.up('sm')]: {
-			width: theme.spacing(9) + 1,
+			width: theme.spacing(7) + 1,
 		},
+	},
+	selectedIcon: {
+		color: theme.palette.primary.main,
 	},
 }));
 
 export default function SideMenu({
 	onSideMenu,
 	isSideMenu,
-	formsList,
 	onFormsList,
 }) {
 	const classes = useStyles();
@@ -57,6 +67,48 @@ export default function SideMenu({
 	const handleDrawerClose = () => {
 		onSideMenu(false);
 	};
+
+	const location = useLocation();
+
+	const isCurrentLocation = (tag) => location.pathname === `/${tag}`;
+
+	const formsList = [
+		{
+			title: 'Arquiteturas',
+			tag: 'arquiteturas',
+			icon: (<BusinessIcon />),
+		},
+		{
+			title: 'Categorias',
+			tag: 'categorias',
+			icon: (<BookmarksIcon />),
+		},
+		{
+			title: 'Lojas',
+			tag: 'lojas',
+			icon: (<AttachMoneyIcon />),
+		},
+		{
+			title: 'Marcas',
+			tag: 'marcas',
+			icon: (<BrandingWatermarkIcon />),
+		},
+		{
+			title: 'Modelos',
+			tag: 'modelos',
+			icon: (<ComputerIcon />),
+		},
+		{
+			title: 'Produtos',
+			tag: 'produtos',
+			icon: (<ShoppingCartIcon />),
+		},
+		{
+			title: 'Variações',
+			tag: 'variacoes',
+			icon: (<DevicesIcon />),
+		},
+	];
 
 	return (
 		<Drawer
@@ -80,10 +132,19 @@ export default function SideMenu({
 			<Divider />
 			<List>
 				{formsList.map((obj) => (
-					<ListItem button key={obj.tag} onClick={() => onFormsList(obj)}>
-						<ListItemIcon><ListIcon /></ListItemIcon>
-						<ListItemText primary={obj.title} />
-					</ListItem>
+					<Tooltip title={obj.title} key={obj.tag}>
+						<ListItem
+							button
+							key={obj.tag}
+							onClick={() => onFormsList(obj)}
+							selected={isCurrentLocation(obj.tag)}
+						>
+							<ListItemIcon className={isCurrentLocation(obj.tag) ? classes.selectedIcon : null}>
+								{obj.icon}
+							</ListItemIcon>
+							<ListItemText primary={obj.title} />
+						</ListItem>
+					</Tooltip>
 				))}
 			</List>
 		</Drawer>
@@ -93,13 +154,11 @@ export default function SideMenu({
 SideMenu.defaultProps = {
 	onSideMenu: () => {},
 	isSideMenu: false,
-	formsList: [],
 	onFormsList: () => {},
 };
 
 SideMenu.propTypes = {
 	onSideMenu: PropTypes.func,
 	isSideMenu: PropTypes.bool,
-	formsList: PropTypes.array,
 	onFormsList: PropTypes.func,
 };
