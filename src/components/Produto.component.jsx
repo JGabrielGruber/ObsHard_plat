@@ -26,7 +26,7 @@ export default class ProdutoComponent extends React.Component {
 			{ title: 'Loja', field: 'loja', lookup: lojas },
 			{
 				title: 'Modelo',
-				field: 'marca',
+				field: 'modelo',
 				lookup: modelos,
 				editComponent: (props) => (
 					<Autocomplete
