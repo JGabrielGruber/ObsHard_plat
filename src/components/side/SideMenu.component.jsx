@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SideMenu({
 	onSideMenu,
 	isSideMenu,
-	onFormsList,
+	onNavSelect,
 }) {
 	const classes = useStyles();
 	const theme = useTheme();
@@ -140,7 +140,11 @@ export default function SideMenu({
 				) : null}
 			>
 				<Tooltip title="Dashboard" key="dashboard">
-					<ListItem>
+					<ListItem
+						button
+						onClick={() => onNavSelect('dashboard')}
+						selected={isCurrentLocation('dashboard')}
+					>
 						<ListItemIcon className={isCurrentLocation('dashboard') ? classes.selectedIcon : null}>
 							<DashboardIcon />
 						</ListItemIcon>
@@ -162,7 +166,7 @@ export default function SideMenu({
 						<ListItem
 							button
 							key={obj.tag}
-							onClick={() => onFormsList(obj)}
+							onClick={() => onNavSelect(obj.tag)}
 							selected={isCurrentLocation(obj.tag)}
 						>
 							<ListItemIcon className={isCurrentLocation(obj.tag) ? classes.selectedIcon : null}>
@@ -180,11 +184,11 @@ export default function SideMenu({
 SideMenu.defaultProps = {
 	onSideMenu: () => {},
 	isSideMenu: false,
-	onFormsList: () => {},
+	onNavSelect: () => {},
 };
 
 SideMenu.propTypes = {
 	onSideMenu: PropTypes.func,
 	isSideMenu: PropTypes.bool,
-	onFormsList: PropTypes.func,
+	onNavSelect: PropTypes.func,
 };

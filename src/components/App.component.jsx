@@ -109,11 +109,11 @@ class App extends React.Component {
 		history.push(`/${obj.key}`);
 	}
 
-	handleFormsList = (obj) => {
+	handleNavSelect = (tag) => {
 		const {
 			history,
 		} = this.props;
-		history.push(`/${obj.tag}`);
+		history.push(`/${tag}`);
 	}
 
 	render() {
@@ -206,7 +206,7 @@ class App extends React.Component {
 							<SideMenu
 								isSideMenu={isSideMenuOpen}
 								onSideMenu={this.sideMenuHandler}
-								onFormsList={this.handleFormsList}
+								onNavSelect={this.handleNavSelect}
 							/>
 						</Grid>
 						<Grid item>
