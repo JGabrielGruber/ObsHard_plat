@@ -16,7 +16,6 @@ import TopBar from './topbar/TopBar.component';
 import AccountMenu from './topbar/AccountMenu.component';
 import NotificationMenu from './topbar/NotificationMenu.component';
 import LoginComponent from './popups/Login.component';
-import SignupComponent from './popups/Signup.component';
 import RecoveryComponent from './popups/Recovery.component';
 import User from '../models/User.model';
 import SideMenu from './side/SideMenu.component';
@@ -32,7 +31,6 @@ class App extends React.Component {
 			isAccountMenuOpen: false,
 			isNotitificationMenuOpen: false,
 			isLoginPopupOpen: false,
-			isSignupPopupOpen: false,
 			isRecoveryPopupOpen: false,
 		};
 		this.accountMenuElementRef = React.createRef();
@@ -70,13 +68,6 @@ class App extends React.Component {
 		}));
 	}
 
-	signupHandler = () => {
-		this.loginHandler();
-		this.setState((prevState) => ({
-			isSignupPopupOpen: !prevState.isSignupPopupOpen,
-		}));
-	}
-
 	recoveryHandler = () => {
 		this.loginHandler();
 		this.setState((prevState) => ({
@@ -103,10 +94,6 @@ class App extends React.Component {
 			this.signupHandler();
 			this.loginHandler();
 		}
-	}
-
-	handlePhoto = (photo) => {
-		console.log(photo);
 	}
 
 	handleRecovery = (recovery) => {
@@ -162,11 +149,6 @@ class App extends React.Component {
 						backgroundColor: '#242424',
 					},
 				},
-				MuiTableHead: {
-					rooo: {
-						backgroundColor: '#242424',
-					},
-				},
 				MuiTableRow: {
 					head: {
 						backgroundColor: '#242424',
@@ -196,7 +178,7 @@ class App extends React.Component {
 		const {
 			accountMenuElement, notiticationMenuElement, isAccountMenuOpen,
 			isNotitificationMenuOpen, isSideMenuOpen, isLoginPopupOpen,
-			isSignupPopupOpen, isRecoveryPopupOpen,
+			isRecoveryPopupOpen,
 		} = this.state;
 		const {
 			user, amountNotification, matrices, users, notifications, stateLogin,
@@ -261,13 +243,6 @@ class App extends React.Component {
 						onCreateA={this.signupHandler}
 						onLogin={this.handleLogin}
 						onPasswordR={this.recoveryHandler}
-					/>
-					<SignupComponent
-						open={isSignupPopupOpen}
-						onBack={this.signupHandler}
-						onClose={() => {}}
-						onSignup={this.handleSignup}
-						onPhoto={this.handlePhoto}
 					/>
 					<RecoveryComponent
 						open={isRecoveryPopupOpen}

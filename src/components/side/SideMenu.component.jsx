@@ -4,12 +4,11 @@ import clsx from 'clsx';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
-	IconButton, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Icon, Tooltip,
+	IconButton, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Tooltip,
 } from '@material-ui/core';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListIcon from '@material-ui/icons/List';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
 import ComputerIcon from '@material-ui/icons/Computer';

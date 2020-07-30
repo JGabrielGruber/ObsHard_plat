@@ -68,5 +68,5 @@ ArquiteturaComponent.protoTypes = {
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
 	}),
-	categorias: PropTypes.arrayOf(new Categoria().Categoria()),
+	categorias: PropTypes.objectOf(new Categoria().Categoria()),
 };
