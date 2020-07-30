@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withRouter, Route, Switch } from 'react-router-dom';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import {
 	Container, ThemeProvider, createMuiTheme, Grid,
 } from '@material-ui/core';
@@ -20,6 +20,7 @@ import RecoveryComponent from './popups/Recovery.component';
 import User from '../models/User.model';
 import SideMenu from './side/SideMenu.component';
 import CategoriaContainer from '../containers/Categoria.container';
+import DashboardContainer from '../containers/Dashboard.container';
 
 class App extends React.Component {
 	constructor(props) {
@@ -210,7 +211,9 @@ class App extends React.Component {
 						</Grid>
 						<Grid item>
 							<main style={{ paddingLeft: isSideMenuOpen ? 200 : 40 }}>
+								<Redirect exact from="/" to="/dashboard" />
 								<Switch>
+									<Route path="/dashboard" component={DashboardContainer} />
 									<Route path="/arquiteturas" component={ArquiteturaContainer} />
 									<Route path="/categorias" component={CategoriaContainer} />
 									<Route path="/lojas" component={LojaContainer} />

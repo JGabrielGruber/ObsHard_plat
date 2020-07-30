@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
-	IconButton, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Tooltip,
+	IconButton, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Tooltip, ListSubheader,
 } from '@material-ui/core';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -16,6 +16,7 @@ import DevicesIcon from '@material-ui/icons/Devices';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import BusinessIcon from '@material-ui/icons/Business';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -129,7 +130,33 @@ export default function SideMenu({
 				</IconButton>
 			</div>
 			<Divider />
-			<List>
+			<List
+				component="nav"
+				aria-labelledby="nested-list-subheader"
+				subheader={isSideMenu ? (
+					<ListSubheader component="div" id="nested-list-subheader">
+						Dashboard e Tabela
+					</ListSubheader>
+				) : null}
+			>
+				<Tooltip title="Dashboard" key="dashboard">
+					<ListItem>
+						<ListItemIcon className={isCurrentLocation('dashboard') ? classes.selectedIcon : null}>
+							<DashboardIcon />
+						</ListItemIcon>
+						<ListItemText primary="Dashboard" />
+					</ListItem>
+				</Tooltip>
+			</List>
+			<List
+				component="nav"
+				aria-labelledby="nested-list-subheader"
+				subheader={isSideMenu ? (
+					<ListSubheader component="div" id="nested-list-subheader">
+						Formulários e Cadastros
+					</ListSubheader>
+				) : null}
+			>
 				{formsList.map((obj) => (
 					<Tooltip title={obj.title} key={obj.tag}>
 						<ListItem
