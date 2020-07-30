@@ -96,7 +96,10 @@ export default class ProdutoComponent extends React.Component {
 				),
 			},
 			{ title: 'Link', field: 'link', type: 'string' },
-			{ title: 'Status', field: 'status', lookup: { ok: 'ok' } },
+			{ title: 'Review', field: 'review' },
+			{
+				title: 'Status', field: 'status', lookup: { ok: 'ok' }, hidden: true,
+			},
 		];
 
 		return (

@@ -1,5 +1,6 @@
 import React from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import App from '../components/App.component';
 import UserRepository from '../repositories/User.repository';

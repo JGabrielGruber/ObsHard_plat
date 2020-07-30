@@ -11,7 +11,7 @@ class ArquiteturaContainer extends React.Component {
 
 		this.state = {
 			arquiteturas: [],
-			categorias: [],
+			categorias: {},
 		};
 	}
 
