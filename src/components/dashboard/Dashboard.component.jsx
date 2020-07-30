@@ -39,7 +39,7 @@ function DashboardComponent({
 							{produtos.length}
 						</Typography>
 						<div>
-							<Button variant="text" color="primary" href="#" size="small" onClick={() => {}}>
+							<Button variant="text" color="primary" href="#/produtos" size="small">
 								Ver produtos
 							</Button>
 						</div>
