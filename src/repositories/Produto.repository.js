@@ -35,7 +35,7 @@ export default {
 	}),
 	syncComplete: async (key, onChange) => {
 		const list = [];
-		await db.ref(collection).on('child_added', async (proS) => {
+		db.ref(collection).on('child_added', async (proS) => {
 			const pro = proS.val();
 
 			if (pro.modelo) {
@@ -59,8 +59,8 @@ export default {
 				...pro,
 				_id: proS.key,
 			});
+			onChange(key, list);
 		});
-		onChange(key, list);
 	},
 	getById: async (id) => db.collection(collection).doc(id).get(),
 	syncById: async (key, onChange, id) => db.ref(collection).child(id).on('value', (snap) => {

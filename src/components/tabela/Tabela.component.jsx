@@ -22,10 +22,9 @@ export default class TabelaComponent extends React.Component {
 		};
 	}
 
-	updateData = (e) => {
-		e.preventDefault();
+	updateData = (props = null) => {
 		const { data } = this.state;
-		const { produtos } = this.props;
+		const { produtos } = props || this.props;
 
 		for (let index = 0; index < (produtos.length / 2); index += 1) {
 			data.push(produtos[index]);
@@ -102,7 +101,7 @@ export default class TabelaComponent extends React.Component {
 			<>
 				<MaterialTable
 					columns={columns}
-					data={data.length > 0 ? data : []}
+					data={produtos}
 					options={{
 						grouping: true,
 						filtering: true,
