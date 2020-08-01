@@ -21,6 +21,7 @@ import User from '../models/User.model';
 import SideMenu from './side/SideMenu.component';
 import CategoriaContainer from '../containers/Categoria.container';
 import DashboardContainer from '../containers/Dashboard.container';
+import TabelaContainer from '../containers/Tabela.container';
 
 class App extends React.Component {
 	constructor(props) {
@@ -211,9 +212,9 @@ class App extends React.Component {
 						</Grid>
 						<Grid item>
 							<main style={{ paddingLeft: isSideMenuOpen ? 200 : 40 }}>
-								<Redirect exact from="/" to="/dashboard" />
 								<Switch>
 									<Route path="/dashboard" component={DashboardContainer} />
+									<Route path="/tabela" component={TabelaContainer} />
 									<Route path="/arquiteturas" component={ArquiteturaContainer} />
 									<Route path="/categorias" component={CategoriaContainer} />
 									<Route path="/lojas" component={LojaContainer} />

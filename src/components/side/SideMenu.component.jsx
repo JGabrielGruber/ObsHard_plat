@@ -17,6 +17,7 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import BusinessIcon from '@material-ui/icons/Business';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import TableChartIcon from '@material-ui/icons/TableChart';
 import { useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -71,6 +72,19 @@ export default function SideMenu({
 	const location = useLocation();
 
 	const isCurrentLocation = (tag) => location.pathname === `/${tag}`;
+
+	const tablesList = [
+		{
+			title: 'Dashboard',
+			tag: 'dashboard',
+			icon: (<DashboardIcon />),
+		},
+		{
+			title: 'Tabelona de Preços',
+			tag: 'tabela',
+			icon: (<TableChartIcon />),
+		},
+	];
 
 	const formsList = [
 		{
@@ -139,18 +153,21 @@ export default function SideMenu({
 					</ListSubheader>
 				) : null}
 			>
-				<Tooltip title="Dashboard" key="dashboard">
-					<ListItem
-						button
-						onClick={() => onNavSelect('dashboard')}
-						selected={isCurrentLocation('dashboard')}
-					>
-						<ListItemIcon className={isCurrentLocation('dashboard') ? classes.selectedIcon : null}>
-							<DashboardIcon />
-						</ListItemIcon>
-						<ListItemText primary="Dashboard" />
-					</ListItem>
-				</Tooltip>
+				{tablesList.map((obj) => (
+					<Tooltip title={obj.title} key={obj.tag}>
+						<ListItem
+							button
+							key={obj.tag}
+							onClick={() => onNavSelect(obj.tag)}
+							selected={isCurrentLocation(obj.tag)}
+						>
+							<ListItemIcon className={isCurrentLocation(obj.tag) ? classes.selectedIcon : null}>
+								{obj.icon}
+							</ListItemIcon>
+							<ListItemText primary={obj.title} />
+						</ListItem>
+					</Tooltip>
+				))}
 			</List>
 			<List
 				component="nav"
