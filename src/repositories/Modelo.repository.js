@@ -1,6 +1,6 @@
 import { db } from '../configFirebase';
 
-const collection = '/modelos';
+export const collection = '/modelos';
 
 export default {
 	add: async (data) => (await db.ref(collection).push(data)).key,

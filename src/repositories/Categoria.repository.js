@@ -1,6 +1,6 @@
 import { db } from '../configFirebase';
 
-const collection = '/categorias';
+export const collection = '/categorias';
 
 export default {
 	add: async (data) => (await db.ref(collection).push(data)).key,
