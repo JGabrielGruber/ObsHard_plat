@@ -1,6 +1,6 @@
 import { db } from '../configFirebase';
 
-const collection = '/marcas';
+export const collection = '/marcas';
 
 export default {
 	add: async (data) => (await db.ref(collection).push(data)).key,

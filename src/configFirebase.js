@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/firestore';
 
 const firebaseConfig = {
 	authDomain: 'obsgpu-bot.firebaseapp.com',
@@ -18,3 +19,4 @@ export default function initializeFirebase() {
 }
 
 export const db = firebase.database();
+export const fs = firebase.firestore();
