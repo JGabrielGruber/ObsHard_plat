@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TabelaComponent from '../components/tabela/Tabela.component';
+import TabelonaRepository from '../repositories/Tabelona.repository';
 
 class TabelaContainer extends React.Component {
 	constructor(props) {
@@ -19,12 +20,6 @@ class TabelaContainer extends React.Component {
 
 	componentDidMount() {
 		TabelonaRepository.sync('tabelona', this.handleChange);
-		CategoriaRepository.sync('categorias', this.handleList);
-		ArquiteturaRepository.sync('arquiteturas', this.handleList);
-		MarcaRepository.sync('marcas', this.handleList);
-		ModeloRepository.sync('modelos', this.handleList);
-		VariacaoRepository.sync('variacoes', this.handleList);
-		LojaRepository.sync('lojas', this.handleList);
 	}
 
 	handleChange = (key, value, index) => {
