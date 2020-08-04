@@ -1,13 +1,6 @@
 import React from 'react';
 
 import TabelaComponent from '../components/tabela/Tabela.component';
-import LojaRepository from '../repositories/Loja.repository';
-import VariacaoRepository from '../repositories/Variacao.repository';
-import ModeloRepository from '../repositories/Modelo.repository';
-import CategoriaRepository from '../repositories/Categoria.repository';
-import ArquiteturaRepository from '../repositories/Arquitetura.repository';
-import MarcaRepository from '../repositories/Marca.repository';
-import TabelonaRepository from '../repositories/Tabelona.repository';
 
 class TabelaContainer extends React.Component {
 	constructor(props) {
@@ -50,7 +43,7 @@ class TabelaContainer extends React.Component {
 
 	handleList = (key, value) => {
 		const ar = this.state[key];
-		value.forEach(item => {
+		value.forEach((item) => {
 			ar[item.nome] = item.nome;
 		});
 		this.setState({
@@ -61,23 +54,11 @@ class TabelaContainer extends React.Component {
 	render() {
 		const {
 			tabelona,
-			categorias,
-			arquiteturas,
-			marcas,
-			modelos,
-			variacoes,
-			lojas,
 		} = this.state;
 
 		return (
 			<TabelaComponent
 				tabelona={tabelona}
-				categorias={categorias}
-				arquiteturas={arquiteturas}
-				marcas={marcas}
-				variacoes={variacoes}
-				modelos={modelos}
-				lojas={lojas}
 			/>
 		);
 	}

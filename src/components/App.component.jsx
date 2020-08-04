@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import {
 	Container, ThemeProvider, createMuiTheme, Grid,
 } from '@material-ui/core';
@@ -133,6 +133,12 @@ class App extends React.Component {
 					dark: '#a76b6b',
 					contrastText: '#000',
 				},
+				error: {
+					light: '#ff616f',
+					main: '#ff1744',
+					dark: '#c4001d',
+					contrastText: '#000',
+				},
 			},
 			overrides: {
 				MuiToolbar: {
@@ -196,7 +202,7 @@ class App extends React.Component {
 								account={user}
 								amountNotifications={amountNotification}
 								stateLogin={stateLogin}
-								title="Observatório de Hardware"
+								title={/Mobi/i.test(window.navigator.userAgent) ? 'Observatório' : 'Observatório de Hardware'}
 								users={users}
 								onAccount={this.accountMenuHandler}
 								onLogin={this.loginHandler}

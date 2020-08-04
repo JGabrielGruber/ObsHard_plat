@@ -4,18 +4,10 @@ import PropTypes from 'prop-types';
 import {
 	Button, Typography, Tooltip, IconButton,
 } from '@material-ui/core';
-import MaterialTable from 'material-table';
 import MUIDataTable from 'mui-datatables';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 
 import SearchLookupFilter from './SearchLookupFilter.component';
-import Produto from '../../models/Produto.model';
-import Loja from '../../models/Loja.model';
-import Variacao from '../../models/Variacao.model';
-import Modelo from '../../models/Modelo.model';
-import Categoria from '../../models/Categoria.model';
-import Arquitetura from '../../models/Arquitetura.model';
-import Marca from '../../models/Marca.model';
 
 export default class TabelaComponent extends React.Component {
 	constructor() {
@@ -42,7 +34,7 @@ export default class TabelaComponent extends React.Component {
 
 	render() {
 		const {
-			tabelona, categorias, arquiteturas, modelos, marcas, variacoes, lojas,
+			tabelona,
 		} = this.props;
 
 		const {
@@ -117,10 +109,9 @@ export default class TabelaComponent extends React.Component {
 				label: 'Produto',
 				name: '',
 				options: {
-					customBodyRender: (_value, tableMeta) => <Typography>{`${tableMeta.rowData[2]} ${tableMeta.rowData[3]} ${tableMeta.rowData[4]}`}</Typography>,
+					customBodyRender: (_value, tableMeta) => <Typography>{`${tableMeta.rowData[3]} ${tableMeta.rowData[4]} ${tableMeta.rowData[5]}`}</Typography>,
 					display: columnsH.produto,
 					filter: false,
-					searchable: false,
 				},
 			},
 			{
@@ -155,6 +146,7 @@ export default class TabelaComponent extends React.Component {
 						: null
 					),
 					display: columnsH.mPreco,
+					filter: false,
 				},
 			},
 			{
@@ -173,6 +165,7 @@ export default class TabelaComponent extends React.Component {
 						: null
 					),
 					display: columnsH.mPrecoD,
+					filter: false,
 				},
 			},
 			{
@@ -189,6 +182,7 @@ export default class TabelaComponent extends React.Component {
 						: null
 					),
 					display: columnsH.preco,
+					filter: false,
 				},
 			},
 			{
@@ -204,6 +198,7 @@ export default class TabelaComponent extends React.Component {
 						</Typography>
 					),
 					display: columnsH.update,
+					filter: false,
 				},
 			},
 		];
@@ -215,7 +210,19 @@ export default class TabelaComponent extends React.Component {
 					data={tabelona}
 					options={{
 						selectableRowsHeader: false,
-						selectableRows: false,
+						selectableRows: 'none',
+						customSearch: (searchQuery, currentRow) => {
+							let isFound = false;
+							currentRow.forEach((col) => {
+								if (String(col).toLowerCase().includes(String(searchQuery).toLowerCase())) {
+									isFound = true;
+								}
+							});
+							if (`${currentRow[3]} ${currentRow[4]} ${currentRow[5]}`.toLowerCase().includes(String(searchQuery).toLowerCase())) {
+								isFound = true;
+							}
+							return isFound;
+						},
 					}}
 					title="Tabelona de Preços"
 					components={{
@@ -229,10 +236,4 @@ export default class TabelaComponent extends React.Component {
 
 TabelaComponent.protoTypes = {
 	tabelona: PropTypes.array,
-	categorias: PropTypes.objectOf(new Categoria().Categoria()),
-	arquiteturas: PropTypes.objectOf(new Arquitetura().Arquitetura()),
-	marcas: PropTypes.objectOf(new Marca().Marca()),
-	modelos: PropTypes.objectOf(new Modelo().Modelo()),
-	variacoes: PropTypes.objectOf(new Variacao().Variacao()),
-	lojas: PropTypes.objectOf(new Loja().Loja()),
 };
