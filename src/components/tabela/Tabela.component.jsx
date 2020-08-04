@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Typography, Tooltip } from '@material-ui/core';
+import {
+	Button, Typography, Tooltip, IconButton,
+} from '@material-ui/core';
 import MaterialTable from 'material-table';
+import MUIDataTable from 'mui-datatables';
+import RateReviewIcon from '@material-ui/icons/RateReview';
 
 import SearchLookupFilter from './SearchLookupFilter.component';
 import Produto from '../../models/Produto.model';
@@ -19,18 +23,19 @@ export default class TabelaComponent extends React.Component {
 
 		this.state = {
 			columnsH: {
-				categoria: true,
-				arquitetura: true,
-				marca: true,
-				modelo: true,
-				variacao: true,
-				produto: false,
-				loja: false,
-				status: false,
-				mPreco: false,
-				mPrecoD: true,
-				preco: false,
-				update: false,
+				review: true,
+				categoria: false,
+				arquitetura: false,
+				marca: false,
+				modelo: false,
+				variacao: false,
+				produto: true,
+				loja: true,
+				status: true,
+				mPreco: true,
+				mPrecoD: false,
+				preco: true,
+				update: true,
 			},
 		};
 	}
@@ -41,7 +46,7 @@ export default class TabelaComponent extends React.Component {
 		} = this.props;
 
 		const {
-			columnsH
+			columnsH,
 		} = this.state;
 
 		const numberFormat = (value) => new Intl.NumberFormat('pt-BR', {
@@ -51,136 +56,166 @@ export default class TabelaComponent extends React.Component {
 
 		const columns = [
 			{
-				title: 'Categoria',
-				field: 'categoria',
-				lookup: categorias,
+				label: 'Review',
+				name: 'review',
+				options: {
+					customBodyRenderLite: (i) => (
+						<IconButton href={tabelona[i].review} disabled={tabelona[i].review === undefined}>
+							<RateReviewIcon />
+						</IconButton>
+					),
+					display: columnsH.review,
+					searchable: false,
+					filter: false,
+				},
+			},
+			{
+				label: 'Categoria',
+				name: 'categoria',
 				width: 5,
-				render: (rowData) => <Typography>{rowData.categoria}</Typography>,
-				hidden: columnsH.categoria,
+				options: {
+					customBodyRenderLite: (i) => <Typography>{tabelona[i].categoria}</Typography>,
+					display: columnsH.categoria,
+				},
 			},
 			{
-				title: 'Arquitetura',
-				field: 'arquitetura',
-				lookup: arquiteturas,
+				label: 'Arquitetura',
+				name: 'arquitetura',
 				width: 10,
-				render: (rowData) => <Typography>{rowData.arquitetura}</Typography>,
-				hidden: columnsH.arquitetura,
+				options: {
+					customBodyRenderLite: (i) => <Typography>{tabelona[i].arquitetura}</Typography>,
+					display: columnsH.arquitetura,
+				},
 			},
 			{
-				title: 'Marca',
-				field: 'marca',
-				lookup: marcas,
+				label: 'Marca',
+				name: 'marca',
 				width: 10,
-				render: (rowData) => <Typography>{rowData.marca}</Typography>,
-				hidden: columnsH.marca,
+				options: {
+					customBodyRenderLite: (i) => <Typography>{tabelona[i].marca}</Typography>,
+					display: columnsH.marca,
+				},
 			},
 			{
-				title: 'Modelo',
-				field: 'modelo',
-				lookup: modelos,
-				render: (rowData) => <Typography>{rowData.modelo}</Typography>,
-				hidden: columnsH.modelo,
+				label: 'Modelo',
+				name: 'modelo',
+				options: {
+					customBodyRenderLite: (i) => <Typography>{tabelona[i].modelo}</Typography>,
+					display: columnsH.modelo,
+				},
 			},
 			{
-				title: 'Variacao',
-				field: 'variacao',
-				lookup: variacoes,
-				render: (rowData) => <Typography>{rowData.variacao}</Typography>,
-				hidden: true,
+				label: 'Variacao',
+				name: 'variacao',
+				options: {
+					customBodyRenderLite: (i) => <Typography>{tabelona[i].variacao}</Typography>,
+					display: columnsH.variacao,
+				},
 			},
 
 			{
-				title: 'Produto',
-				field: 'variacao',
-				customFilterAndSearch: (
-					term, rowData,
-				) => `${rowData.marca} ${rowData.modelo} ${rowData.variacao}`.toLowerCase().includes(String(term).toLowerCase()),
-				render: (rowData) => <Typography>{`${rowData.marca} ${rowData.modelo} ${rowData.variacao}`}</Typography>,
-				hidden: columnsH.produto,
+				label: 'Produto',
+				name: '',
+				options: {
+					customBodyRender: (_value, tableMeta) => <Typography>{`${tableMeta.rowData[2]} ${tableMeta.rowData[3]} ${tableMeta.rowData[4]}`}</Typography>,
+					display: columnsH.produto,
+					filter: false,
+					searchable: false,
+				},
 			},
 			{
-				title: 'Loja',
-				field: 'loja',
-				lookup: lojas,
+				label: 'Loja',
+				name: 'loja',
 				width: 10,
-				render: (rowData) => <Button href={rowData.link} color="primary">{rowData.loja}</Button>,
-				hidden: columnsH.loja,
+				options: {
+					customBodyRenderLite: (i) => <Button href={tabelona[i].link} color="primary">{tabelona[i].loja}</Button>,
+					display: columnsH.loja,
+				},
 			},
 			{
-				title: 'Status',
-				field: 'status',
-				lookup: { ok: 'ok' },
+				label: 'Status',
+				name: 'status',
 				width: 3,
-				render: (rowData) => <Typography color={rowData.status === 'ok' ? 'inherit' : 'error'}>{rowData.status}</Typography>,
-				hidden: columnsH.status,
+				options: {
+					customBodyRenderLite: (i) => <Typography color={tabelona[i].status === 'ok' ? 'inherit' : 'error'}>{tabelona[i].status}</Typography>,
+					display: columnsH.status,
+				},
 			},
 			{
-				title: 'Menor Preço',
-				field: 'mPreco',
+				label: 'Menor Preço',
+				name: 'mPreco',
 				width: 3,
-				render: (rowData) => (rowData.mPreco
-					? (
-						<Tooltip title={new Date(rowData.mPreco[1]).toLocaleString()}>
-							<Typography>{numberFormat(rowData.mPreco[0])}</Typography>
-						</Tooltip>
-					)
-					: null
-				),
-				hidden: columnsH.mPreco,
+				options: {
+					customBodyRenderLite: (i) => (tabelona[i].mPreco
+						? (
+							<Tooltip title={new Date(tabelona[i].mPreco[1]).toLocaleString()}>
+								<Typography>{numberFormat(tabelona[i].mPreco[0])}</Typography>
+							</Tooltip>
+						)
+						: null
+					),
+					display: columnsH.mPreco,
+				},
 			},
 			{
-				title: 'Menor Preço Data',
-				field: 'mPreco',
+				label: 'Menor Preço Data',
+				name: 'mPreco',
 				width: 150,
-				render: (rowData) => (rowData.mPreco
-					? (
+				options: {
+					customBodyRenderLite: (i) => (tabelona[i].mPreco
+						? (
+							<Typography>
+								{
+									new Date(tabelona[i].mPreco[1]).toLocaleString()
+								}
+							</Typography>
+						)
+						: null
+					),
+					display: columnsH.mPrecoD,
+				},
+			},
+			{
+				label: 'Preço',
+				name: 'preco',
+				width: 3,
+				options: {
+					customBodyRenderLite: (i) => (tabelona[i].preco && tabelona[i].status === 'ok'
+						? (
+							<Tooltip title={new Date(tabelona[i].preco[1]).toLocaleString()}>
+								<Typography>{numberFormat(tabelona[i].preco[0])}</Typography>
+							</Tooltip>
+						)
+						: null
+					),
+					display: columnsH.preco,
+				},
+			},
+			{
+				label: 'Verificado',
+				name: 'update',
+				width: 3,
+				options: {
+					customBodyRenderLite: (i) => (
 						<Typography>
 							{
-								new Date(rowData.mPreco[1]).toLocaleString()
+								new Date(tabelona[i].update).toLocaleString()
 							}
 						</Typography>
-					)
-					: null
-				),
-				hidden: columnsH.mPrecoD,
-			},
-			{
-				title: 'Preço',
-				field: 'preco',
-				width: 3,
-				render: (rowData) => (rowData.preco
-					? (
-						<Tooltip title={new Date(rowData.preco[1]).toLocaleString()}>
-							<Typography>{numberFormat(rowData.preco[0])}</Typography>
-						</Tooltip>
-					)
-					: null
-				),
-				hidden: columnsH.preco,
-			},
-			{
-				title: 'Verificado',
-				field: 'update',
-				width: 3,
-				render: (rowData) => (
-					<Typography>
-						{
-							new Date(rowData.update).toLocaleString()
-						}
-					</Typography>
-				),
-				hidden: columnsH.update,
+					),
+					display: columnsH.update,
+				},
 			},
 		];
 
 		return (
 			<>
-				<MaterialTable
+				<MUIDataTable
 					columns={columns}
 					data={tabelona}
 					options={{
-						grouping: true,
-						filtering: true,
+						selectableRowsHeader: false,
+						selectableRows: false,
 					}}
 					title="Tabelona de Preços"
 					components={{
