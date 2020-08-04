@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TabelaComponent from '../components/tabela/Tabela.component';
-import ProdutoRepository from '../repositories/Produto.repository';
 import LojaRepository from '../repositories/Loja.repository';
 import VariacaoRepository from '../repositories/Variacao.repository';
 import ModeloRepository from '../repositories/Modelo.repository';
@@ -16,11 +15,23 @@ class TabelaContainer extends React.Component {
 
 		this.state = {
 			tabelona: [],
+			categorias: {},
+			arquiteturas: {},
+			marcas: {},
+			variacoes: {},
+			modelos: {},
+			lojas: {},
 		};
 	}
 
 	componentDidMount() {
 		TabelonaRepository.sync('tabelona', this.handleChange);
+		CategoriaRepository.sync('categorias', this.handleList);
+		ArquiteturaRepository.sync('arquiteturas', this.handleList);
+		MarcaRepository.sync('marcas', this.handleList);
+		ModeloRepository.sync('modelos', this.handleList);
+		VariacaoRepository.sync('variacoes', this.handleList);
+		LojaRepository.sync('lojas', this.handleList);
 	}
 
 	handleChange = (key, value, index) => {
@@ -37,14 +48,36 @@ class TabelaContainer extends React.Component {
 		}
 	}
 
+	handleList = (key, value) => {
+		const ar = this.state[key];
+		value.forEach(item => {
+			ar[item.nome] = item.nome;
+		});
+		this.setState({
+			[key]: ar,
+		});
+	}
+
 	render() {
 		const {
 			tabelona,
+			categorias,
+			arquiteturas,
+			marcas,
+			modelos,
+			variacoes,
+			lojas,
 		} = this.state;
 
 		return (
 			<TabelaComponent
 				tabelona={tabelona}
+				categorias={categorias}
+				arquiteturas={arquiteturas}
+				marcas={marcas}
+				variacoes={variacoes}
+				modelos={modelos}
+				lojas={lojas}
 			/>
 		);
 	}
