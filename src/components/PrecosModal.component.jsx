@@ -34,7 +34,6 @@ class PrecosModal extends React.Component {
 			open,
 		} = this.state;
 
-
 		const numberFormat = (value) => new Intl.NumberFormat('pt-BR', {
 			style: 'currency',
 			currency: 'BRL',
