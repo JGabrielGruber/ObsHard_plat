@@ -74,4 +74,13 @@ export default {
 		_id: null,
 	}),
 	delete: async (data) => db.ref(collection).child(data._id).remove(),
+	addPreco: async (data, mod) => db.ref(collection).orderByChild('modelo').equalTo(mod || '').on('child_added', async (snap) => {
+		const val = snap.val();
+		const precos = val.precos || [];
+		precos.push(data);
+		val.precos = precos;
+		await db.ref(collection).child(snap.key).set({
+			...val,
+		});
+	}),
 };

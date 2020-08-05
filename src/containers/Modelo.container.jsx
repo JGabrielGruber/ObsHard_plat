@@ -5,6 +5,7 @@ import Modelo from '../components/Modelo.component';
 import ModeloRepository from '../repositories/Modelo.repository';
 import ArquiteturaRepository from '../repositories/Arquitetura.repository';
 import MarcaRepository from '../repositories/Marca.repository';
+import ProdutoRepository from '../repositories/Produto.repository';
 
 class ModeloContainer extends React.Component {
 	constructor(props) {
@@ -39,13 +40,19 @@ class ModeloContainer extends React.Component {
 
 	handleList = (key, value) => {
 		const ar = this.state[key];
-		value.forEach(item => {
+		value.forEach((item) => {
 			ar[item._id] = item.nome;
 		});
 		this.setState({
 			[key]: ar,
 		});
 	}
+
+	handleAddPrecos = (key, data) => new Promise((resolve) => {
+		ProdutoRepository.addPreco(data, key).then(() => {
+			resolve();
+		});
+	});
 
 	add = (marca) => {
 		ModeloRepository.add(marca);
@@ -76,6 +83,7 @@ class ModeloContainer extends React.Component {
 				}}
 				arquiteturas={arquiteturas}
 				marcas={marcas}
+				onAddPreco={this.handleAddPrecos}
 			/>
 		);
 	}
