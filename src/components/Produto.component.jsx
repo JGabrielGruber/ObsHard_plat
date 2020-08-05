@@ -1,7 +1,9 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import PropTypes from 'prop-types';
-import { TextField } from '@material-ui/core';
+import {
+	TextField,
+} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import icons from './icons';
@@ -9,6 +11,7 @@ import Produto from '../models/Produto.model';
 import Loja from '../models/Loja.model';
 import Variacao from '../models/Variacao.model';
 import Modelo from '../models/Modelo.model';
+import PrecosModal from './PrecosModal.component';
 
 export default class ProdutoComponent extends React.Component {
 	constructor() {
@@ -49,24 +52,7 @@ export default class ProdutoComponent extends React.Component {
 							props.onChange(v);
 						}}
 					/>
-				)
-				/* return (
-						<Select
-							value={props.value}
-							onChange={(e) => props.onChange(e.target.value)}
-						>
-							{Object.keys(modelos).map((item) => (
-								<MenuItem
-									key={item}
-									value={item}
-									title={modelos[item]}
-								>
-									{modelos[item]}
-								</MenuItem>
-							))}
-						</Select>
-					); */
-				,
+				),
 			},
 			{
 				title: 'Variacao',
@@ -95,10 +81,18 @@ export default class ProdutoComponent extends React.Component {
 					/>
 				),
 			},
-			{ title: 'Link', field: 'link', type: 'string' },
+			{
+				title: 'Link', field: 'link', type: 'string', width: 100,
+			},
 			{ title: 'Review', field: 'review' },
 			{
 				title: 'Status', field: 'status', lookup: { ok: 'ok' }, hidden: true,
+			},
+			{
+				title: 'Preços',
+				field: 'precos',
+				render: (rowData) => <PrecosModal data={rowData.precos} />,
+				editComponent: (props) => <PrecosModal data={props.value} onChange={props.onChange} />,
 			},
 		];
 
