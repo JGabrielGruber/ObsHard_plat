@@ -48,7 +48,13 @@ class PrecosModal extends React.Component {
 			title: 'Data',
 			field: '[1]',
 			type: 'date',
-			render: (rowData) => <Typography>{new Date(rowData[0]).toLocaleString()}</Typography>,
+			render: (rowData) => (
+				<Typography>
+					{
+						new Date((rowData[1] * 1000)).toLocaleString()
+					}
+				</Typography>
+			),
 		}];
 
 		return (
