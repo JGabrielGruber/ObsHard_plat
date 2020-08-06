@@ -22,6 +22,7 @@ import SideMenu from './side/SideMenu.component';
 import CategoriaContainer from '../containers/Categoria.container';
 import DashboardContainer from '../containers/Dashboard.container';
 import TabelaContainer from '../containers/Tabela.container';
+import BotContainer from '../containers/Bot.container';
 
 class App extends React.Component {
 	constructor(props) {
@@ -147,6 +148,11 @@ class App extends React.Component {
 						color: '#fff',
 					},
 				},
+				MuiPaper: {
+					root: {
+						backgroundColor: '#313131',
+					},
+				},
 				MuiDrawer: {
 					paper: {
 						backgroundColor: '#242424',
@@ -228,6 +234,7 @@ class App extends React.Component {
 									<Route path="/modelos" component={ModeloContainer} />
 									<Route path="/produtos" component={ProdutoContainer} />
 									<Route path="/variacoes" component={VariacaoContainer} />
+									<Route path="/bot" component={BotContainer} />
 								</Switch>
 							</main>
 						</Grid>

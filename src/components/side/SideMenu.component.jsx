@@ -7,6 +7,7 @@ import {
 	IconButton, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Tooltip, ListSubheader,
 } from '@material-ui/core';
 
+import AdbIcon from '@material-ui/icons/Adb';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -193,6 +194,29 @@ export default function SideMenu({
 						</ListItem>
 					</Tooltip>
 				))}
+			</List>
+			<List
+				component="nav"
+				aria-labelledby="nested-list-subheader"
+				subheader={isSideMenu ? (
+					<ListSubheader component="div" id="nested-list-subheader">
+						Ferramentas
+					</ListSubheader>
+				) : null}
+			>
+				<Tooltip title="Bot" key="bot">
+					<ListItem
+						button
+						key="bot"
+						onClick={() => onNavSelect('bot')}
+						selected={isCurrentLocation('bot')}
+					>
+						<ListItemIcon className={isCurrentLocation('bot') ? classes.selectedIcon : null}>
+							<AdbIcon />
+						</ListItemIcon>
+						<ListItemText primary="Bot" />
+					</ListItem>
+				</Tooltip>
 			</List>
 		</Drawer>
 	);
