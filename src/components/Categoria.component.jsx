@@ -51,11 +51,11 @@ export default class CategoriaComponent extends React.Component {
 	}
 }
 
-CategoriaComponent.protoTypes = {
-	categorias: PropTypes.arrayOf(new Categoria().Categoria()),
-	actions: PropTypes.objectOf({
+CategoriaComponent.propTypes = {
+	categorias: PropTypes.arrayOf(PropTypes.shape(new Categoria().Categoria())).isRequired,
+	actions: PropTypes.shape({
 		onAdd: PropTypes.func,
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
-	}),
+	}).isRequired,
 };

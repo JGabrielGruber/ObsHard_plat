@@ -127,14 +127,14 @@ export default class ProdutoComponent extends React.Component {
 	}
 }
 
-ProdutoComponent.protoTypes = {
-	produtos: PropTypes.arrayOf(new Produto().Produto()),
-	actions: PropTypes.objectOf({
+ProdutoComponent.propTypes = {
+	produtos: PropTypes.arrayOf(PropTypes.shape(new Produto().Produto())).isRequired,
+	actions: PropTypes.shape({
 		onAdd: PropTypes.func,
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
-	}),
-	lojas: PropTypes.objectOf(new Loja().Loja()),
-	variacoes: PropTypes.objectOf(new Variacao().Variacao()),
-	modelos: PropTypes.objectOf(new Modelo().Modelo()),
+	}).isRequired,
+	lojas: PropTypes.shape(new Loja().Loja()).isRequired,
+	variacoes: PropTypes.shape(new Variacao().Variacao()).isRequired,
+	modelos: PropTypes.shape(new Modelo().Modelo()).isRequired,
 };

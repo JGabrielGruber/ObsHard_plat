@@ -61,12 +61,12 @@ export default class ArquiteturaComponent extends React.Component {
 	}
 }
 
-ArquiteturaComponent.protoTypes = {
-	arquiteturas: PropTypes.arrayOf(new Arquitetura().Arquitetura()),
-	actions: PropTypes.objectOf({
+ArquiteturaComponent.propTypes = {
+	arquiteturas: PropTypes.arrayOf(PropTypes.shape(new Arquitetura().Arquitetura())).isRequired,
+	actions: PropTypes.shape({
 		onAdd: PropTypes.func,
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
-	}),
-	categorias: PropTypes.objectOf(new Categoria().Categoria()),
+	}).isRequired,
+	categorias: PropTypes.shape(new Categoria().Categoria()).isRequired,
 };

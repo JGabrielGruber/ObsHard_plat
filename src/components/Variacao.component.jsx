@@ -51,11 +51,11 @@ export default class VariacaoComponent extends React.Component {
 	}
 }
 
-VariacaoComponent.protoTypes = {
-	variacoes: PropTypes.arrayOf(new Variacao().Variacao()),
-	actions: PropTypes.objectOf({
+VariacaoComponent.propTypes = {
+	variacoes: PropTypes.arrayOf(PropTypes.shape(new Variacao().Variacao())).isRequired,
+	actions: PropTypes.shape({
 		onAdd: PropTypes.func,
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
-	}),
+	}).isRequired,
 };

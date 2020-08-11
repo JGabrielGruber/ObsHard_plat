@@ -61,11 +61,11 @@ export default class LojaComponent extends React.Component {
 	}
 }
 
-LojaComponent.protoTypes = {
-	lojas: PropTypes.arrayOf(new Loja().Loja()),
-	actions: PropTypes.objectOf({
+LojaComponent.propTypes = {
+	lojas: PropTypes.arrayOf(PropTypes.shape(new Loja().Loja())).isRequired,
+	actions: PropTypes.shape({
 		onAdd: PropTypes.func,
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
-	}),
+	}).isRequired,
 };

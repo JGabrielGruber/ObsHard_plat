@@ -103,7 +103,7 @@ PrecosModal.defaultProps = {
 };
 
 PrecosModal.propTypes = {
-	data: PropTypes.array,
+	data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
 	onChange: PropTypes.func,
 };
 

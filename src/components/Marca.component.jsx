@@ -49,11 +49,11 @@ export default class MarcaComponent extends React.Component {
 	}
 }
 
-MarcaComponent.protoTypes = {
-	marcas: PropTypes.arrayOf(new Marca().Marca()),
-	actions: PropTypes.objectOf({
+MarcaComponent.propTypes = {
+	marcas: PropTypes.arrayOf(PropTypes.shape(new Marca().Marca())).isRequired,
+	actions: PropTypes.shape({
 		onAdd: PropTypes.func,
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
-	}),
+	}).isRequired,
 };

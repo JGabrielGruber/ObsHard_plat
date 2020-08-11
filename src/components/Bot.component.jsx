@@ -191,8 +191,8 @@ BotComponent.defaultProps = {
 };
 
 BotComponent.propTypes = {
-	bot: PropTypes.objectOf(new Bot().Bot()),
-	actions: PropTypes.objectOf({
+	bot: PropTypes.shape(new Bot().Bot()),
+	actions: PropTypes.shape({
 		onUpdate: PropTypes.func,
 	}).isRequired,
 };
