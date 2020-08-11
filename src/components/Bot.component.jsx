@@ -169,7 +169,7 @@ class BotComponent extends React.Component {
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									{ bot.logs ? bot.logs.map((log, index) => (
+									{ bot.log ? bot.log.map((log, index) => (
 										<TableRow key={`l-${index}`}>
 											<TableCell component="th" scope="row">
 												{log}
