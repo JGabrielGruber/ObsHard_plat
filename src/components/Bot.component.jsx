@@ -175,7 +175,14 @@ class BotComponent extends React.Component {
 												{log}
 											</TableCell>
 										</TableRow>
-									)) : 'Não há logs' }
+									))
+										: (
+											<TableRow key="log">
+												<TableCell component="th" scope="row">
+													Não há logs
+												</TableCell>
+											</TableRow>
+										) }
 								</TableBody>
 							</Table>
 						</TableContainer>
