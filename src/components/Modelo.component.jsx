@@ -85,14 +85,14 @@ export default class ModeloComponent extends React.Component {
 	}
 }
 
-ModeloComponent.protoTypes = {
-	modelos: PropTypes.arrayOf(new Modelo().Modelo()),
-	actions: PropTypes.objectOf({
+ModeloComponent.propTypes = {
+	modelos: PropTypes.arrayOf(PropTypes.shape(new Modelo().Modelo())).isRequired,
+	actions: PropTypes.shape({
 		onAdd: PropTypes.func,
 		onUpdate: PropTypes.func,
 		onDelete: PropTypes.func,
-	}),
-	arquiteturas: PropTypes.objectOf(new Arquitetura().Arquitetura()),
-	marcas: PropTypes.objectOf(new Marca().Marca()),
-	onAddPreco: PropTypes.func,
+	}).isRequired,
+	arquiteturas: PropTypes.shape(new Arquitetura().Arquitetura()).isRequired,
+	marcas: PropTypes.shape(new Marca().Marca()).isRequired,
+	onAddPreco: PropTypes.func.isRequired,
 };
