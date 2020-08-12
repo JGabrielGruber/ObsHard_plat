@@ -53,10 +53,14 @@ class App extends React.Component {
 
 	notificationMenuHandler = (event) => {
 		event.persist();
-		this.setState((prevState) => ({
-			notiticationMenuElement: event.target,
-			isNotitificationMenuOpen: !prevState.isNotitificationMenuOpen,
-		}));
+		if (Notification.permission === 'granted') {
+			this.setState((prevState) => ({
+				notiticationMenuElement: event.target,
+				isNotitificationMenuOpen: !prevState.isNotitificationMenuOpen,
+			}));
+		} else {
+			Notification.requestPermission();
+		}
 	}
 
 	sideMenuHandler = () => {
