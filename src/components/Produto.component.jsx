@@ -26,7 +26,7 @@ export default class ProdutoComponent extends React.Component {
 		} = this.props;
 
 		const columns = [
-			{ title: 'Loja', field: 'loja', lookup: lojas },
+			{ title: 'Loja', field: 'loja', lookup: { ...lojas, '': 'Nenhuma' } },
 			{
 				title: 'Modelo',
 				field: 'modelo',
