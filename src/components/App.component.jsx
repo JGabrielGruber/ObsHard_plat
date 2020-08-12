@@ -23,11 +23,13 @@ import CategoriaContainer from '../containers/Categoria.container';
 import DashboardContainer from '../containers/Dashboard.container';
 import TabelaContainer from '../containers/Tabela.container';
 import BotContainer from '../containers/Bot.container';
+import NotificationM from '../models/Notification.model';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			amountNotifications: 0,
 			accountMenuElement: null,
 			notiticationMenuElement: null,
 			isSideMenuOpen: false,
@@ -37,6 +39,43 @@ class App extends React.Component {
 			isRecoveryPopupOpen: false,
 		};
 		this.accountMenuElementRef = React.createRef();
+	}
+
+	componentDidUpdate(previousProps, previousState) {
+		const { notifications } = this.props;
+		if (this.state === previousState && this.props !== previousProps
+			&& previousProps.notifications.length > 0) {
+			const dif = notifications.filter(
+				(x) => previousProps.notifications.find((y) => y.timestamp === x.timestamp) === undefined,
+			);
+			if (dif.length > 0) {
+				if (Notification.permission === 'granted') {
+					dif.forEach((item) => {
+						const notification = new Notification(item.title, {
+							icon: 'https://jgabrielgruber.github.io/ObsHard_plat/logo192.png',
+							body: item.content,
+						});
+						notification.onclick = () => {
+							window.open(`https://jgabrielgruber.github.io/ObsHard_plat/#/produtos/${item.key}`);
+						};
+					});
+				}
+				const { amountNotifications } = this.state;
+				this.setState({
+					amountNotifications: dif.length + amountNotifications,
+				});
+			}
+		}
+	}
+
+	isSame = (x, y) => {
+		let objectsAreSame = true;
+		Object.keys(x).forEach((propertyName) => {
+			if (x[propertyName] !== y[propertyName]) {
+				objectsAreSame = false;
+			}
+		});
+		return objectsAreSame;
 	}
 
 	accountHandler = (event) => {
@@ -53,10 +92,15 @@ class App extends React.Component {
 
 	notificationMenuHandler = (event) => {
 		event.persist();
-		this.setState((prevState) => ({
-			notiticationMenuElement: event.target,
-			isNotitificationMenuOpen: !prevState.isNotitificationMenuOpen,
-		}));
+		if (Notification.permission === 'granted') {
+			this.setState((prevState) => ({
+				amountNotifications: 0,
+				notiticationMenuElement: event.target,
+				isNotitificationMenuOpen: !prevState.isNotitificationMenuOpen,
+			}));
+		} else {
+			Notification.requestPermission();
+		}
 	}
 
 	sideMenuHandler = () => {
@@ -192,10 +236,10 @@ class App extends React.Component {
 		const {
 			accountMenuElement, notiticationMenuElement, isAccountMenuOpen,
 			isNotitificationMenuOpen, isSideMenuOpen, isLoginPopupOpen,
-			isRecoveryPopupOpen,
+			isRecoveryPopupOpen, amountNotifications,
 		} = this.state;
 		const {
-			user, amountNotification, matrices, users, notifications, stateLogin,
+			user, matrices, users, notifications, stateLogin,
 			onLogout,
 		} = this.props;
 
@@ -206,7 +250,7 @@ class App extends React.Component {
 						<Grid item>
 							<TopBar
 								account={user}
-								amountNotifications={amountNotification}
+								amountNotifications={amountNotifications}
 								stateLogin={stateLogin}
 								title={/Mobi/i.test(window.navigator.userAgent) ? 'Observatório' : 'Observatório de Hardware'}
 								users={users}
@@ -283,10 +327,7 @@ App.defaultProps = {
 App.propTypes = {
 	user: PropTypes.shape(User),
 	amountNotification: PropTypes.number,
-	notifications: PropTypes.arrayOf(PropTypes.shape({
-		uid: PropTypes.string.isRequired,
-		title: PropTypes.string.isRequired,
-	})),
+	notifications: PropTypes.arrayOf(PropTypes.shape(new NotificationM().NotificationM())),
 	stateLogin: PropTypes.string,
 	onLogin: PropTypes.func.isRequired,
 	onSignup: PropTypes.func.isRequired,

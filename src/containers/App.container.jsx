@@ -4,6 +4,7 @@ import 'firebase/auth';
 
 import App from '../components/App.component';
 import UserRepository from '../repositories/User.repository';
+import NotificationRepository from '../repositories/Notification.repository';
 
 class AppContainer extends React.Component {
 	constructor(props) {
@@ -12,6 +13,7 @@ class AppContainer extends React.Component {
 		this.state = {
 			stateLogin: 'NOT_LOGGED',
 			user: null,
+			notifications: [],
 		};
 	}
 
@@ -22,11 +24,26 @@ class AppContainer extends React.Component {
 				user,
 			});
 		});
+		NotificationRepository.sync('notifications', this.handleChange);
+	}
+
+	handleChange = (key, value, index) => {
+		if (index) {
+			const ar = this.state[key];
+			ar[index] = value || undefined;
+			this.setState({
+				[key]: ar,
+			});
+		} else {
+			this.setState({
+				[key]: value || undefined,
+			});
+		}
 	}
 
 	render() {
 		const {
-			stateLogin, user,
+			stateLogin, user, notifications,
 		} = this.state;
 
 		return (
@@ -36,6 +53,7 @@ class AppContainer extends React.Component {
 				onLogin={UserRepository.login}
 				onSignup={() => {}}
 				onLogout={UserRepository.logout}
+				notifications={notifications}
 			/>
 		);
 	}
