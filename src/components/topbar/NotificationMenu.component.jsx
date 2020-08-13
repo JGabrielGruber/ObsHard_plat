@@ -26,11 +26,10 @@ function NotificationMenu({
 		>
 			{ notifications.length > 0 ? (
 				<div>
-					{ notifications.map((notification) => (
-						<>
+					{ notifications.map((notification, i) => (
+						<div key={`${notification.key}-${i}`}>
 							<MenuItem
-								key={notification.key}
-								onClick={onClick}
+								onClick={onClick(notification.key)}
 							>
 								<Badge color="secondary" variant="dot" invisible={!notification.notRead}>
 									<Grid container direction="column">
@@ -45,7 +44,7 @@ function NotificationMenu({
 								</Badge>
 							</MenuItem>
 							<Divider />
-						</>
+						</div>
 					)) }
 				</div>
 			) : (
