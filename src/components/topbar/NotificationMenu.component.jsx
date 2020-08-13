@@ -38,7 +38,7 @@ function NotificationMenu({
 										<Typography variant="h6">{notification.content}</Typography>
 										<Typography variant="caption">
 											{
-												notification.timestamp ? new Date((notification.timestamp)).toLocaleString() : ''
+												notification.timestamp ? new Date((notification.timestamp * 1000)).toLocaleString() : ''
 											}
 										</Typography>
 									</Grid>
