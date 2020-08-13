@@ -6,12 +6,14 @@ import {
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
+import { Route } from 'react-router-dom';
 import icons from './icons';
 import Produto from '../models/Produto.model';
 import Loja from '../models/Loja.model';
 import Variacao from '../models/Variacao.model';
 import Modelo from '../models/Modelo.model';
 import PrecosModal from './PrecosModal.component';
+import ProdutoModal from './ProdutoModal.component';
 
 export default class ProdutoComponent extends React.Component {
 	constructor() {
@@ -22,7 +24,7 @@ export default class ProdutoComponent extends React.Component {
 
 	render() {
 		const {
-			actions, produtos, lojas, modelos, variacoes,
+			actions, produtos, lojas, modelos, variacoes, location, history,
 		} = this.props;
 
 		const columns = [
@@ -97,32 +99,48 @@ export default class ProdutoComponent extends React.Component {
 		];
 
 		return (
-			<MaterialTable
-				icons={icons}
-				columns={columns}
-				data={produtos}
-				editable={{
-					onRowAdd: (newData) => new Promise((resolve) => {
-						setTimeout(() => {
-							actions.onAdd(newData);
-							resolve();
-						}, 1000);
-					}),
-					onRowUpdate: (newData, oldData) => new Promise((resolve) => {
-						setTimeout(() => {
-							actions.onUpdate(newData, oldData);
-							resolve();
-						}, 1000);
-					}),
-					onRowDelete: (oldData) => new Promise((resolve) => {
-						setTimeout(() => {
-							actions.onDelete(oldData);
-							resolve();
-						}, 1000);
-					}),
-				}}
-				title="Produtos"
-			/>
+			<>
+				<Route
+					path="/produtos/:key"
+					render={(props) => (
+						<ProdutoModal
+							{...props}
+							location={location}
+							history={history}
+							lojas={lojas}
+							modelos={modelos}
+							produtos={produtos}
+							variacoes={variacoes}
+						/>
+					)}
+				/>
+				<MaterialTable
+					icons={icons}
+					columns={columns}
+					data={produtos}
+					editable={{
+						onRowAdd: (newData) => new Promise((resolve) => {
+							setTimeout(() => {
+								actions.onAdd(newData);
+								resolve();
+							}, 1000);
+						}),
+						onRowUpdate: (newData, oldData) => new Promise((resolve) => {
+							setTimeout(() => {
+								actions.onUpdate(newData, oldData);
+								resolve();
+							}, 1000);
+						}),
+						onRowDelete: (oldData) => new Promise((resolve) => {
+							setTimeout(() => {
+								actions.onDelete(oldData);
+								resolve();
+							}, 1000);
+						}),
+					}}
+					title="Produtos"
+				/>
+			</>
 		);
 	}
 }

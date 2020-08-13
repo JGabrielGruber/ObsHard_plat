@@ -162,6 +162,14 @@ class App extends React.Component {
 		history.push(`/${tag}`);
 	}
 
+	handleNotification = (key) => () => {
+		const {
+			history,
+		} = this.props;
+
+		history.push(`/produtos/${key}`);
+	}
+
 	render() {
 		const theme = createMuiTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? {
 			palette: {
@@ -297,6 +305,7 @@ class App extends React.Component {
 						notifications={notifications}
 						open={isNotitificationMenuOpen}
 						onClose={this.notificationMenuHandler}
+						onClick={this.handleNotification}
 					/>
 					<LoginComponent
 						open={isLoginPopupOpen}

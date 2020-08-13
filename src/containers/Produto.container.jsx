@@ -70,6 +70,11 @@ class ProdutoContainer extends React.Component {
 			variacoes,
 		} = this.state;
 
+		const {
+			location,
+			history,
+		} = this.props;
+
 		return (
 			<Produto
 				produtos={produtos}
@@ -81,6 +86,8 @@ class ProdutoContainer extends React.Component {
 				lojas={lojas}
 				variacoes={variacoes}
 				modelos={modelos}
+				location={location}
+				history={history}
 			/>
 		);
 	}
