@@ -83,7 +83,7 @@ class App extends React.Component {
 								n.onclick((e) => {
 									const { action, notification } = e;
 									if (action === 'show') {
-										clients.openWindow(notification.data.url);
+										window.open(notification.data.url);
 										notification.close();
 									}
 								});
