@@ -66,6 +66,27 @@ class App extends React.Component {
 										},
 									],
 								});
+							} else {
+								const n = new Notification(item.title, {
+									icon: 'https://jgabrielgruber.github.io/ObsHard_plat/logo192.png',
+									body: item.content,
+									data: {
+										url: `${process.env.PUBLIC_URL}/#/produtos/${item.key}`,
+									},
+									actions: [
+										{
+											action: 'show',
+											title: 'Ver detalhes',
+										},
+									],
+								});
+								n.onclick((e) => {
+									const { action, notification } = e;
+									if (action === 'show') {
+										clients.openWindow(notification.data.url);
+										notification.close();
+									}
+								});
 							}
 						});
 					});
