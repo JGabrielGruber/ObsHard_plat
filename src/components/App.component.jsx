@@ -239,7 +239,7 @@ class App extends React.Component {
 			},
 		});
 
-		document.body.style = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'background: #1f1f1f;' : 'background: #FFF;';
+		document.body.style = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'background: #1f1f1f;' : 'background: #F9F9F9;';
 
 		const {
 			accountMenuElement, notiticationMenuElement, isAccountMenuOpen,
