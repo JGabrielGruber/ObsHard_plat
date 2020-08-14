@@ -51,13 +51,23 @@ class App extends React.Component {
 			if (dif.length > 0) {
 				if (Notification.permission === 'granted') {
 					dif.forEach((item) => {
-						const notification = new Notification(item.title, {
-							icon: 'https://jgabrielgruber.github.io/ObsHard_plat/logo192.png',
-							body: item.content,
+						navigator.serviceWorker.getRegistration(`${process.env.PUBLIC_URL}/service-worker-c.js`).then((reg) => {
+							if (reg) {
+								reg.showNotification(item.title, {
+									icon: 'https://jgabrielgruber.github.io/ObsHard_plat/logo192.png',
+									body: item.content,
+									data: {
+										url: `${process.env.PUBLIC_URL}/#/produtos/${item.key}`,
+									},
+									actions: [
+										{
+											action: 'show',
+											title: 'Ver detalhes',
+										},
+									],
+								});
+							}
 						});
-						notification.onclick = () => {
-							window.open(`https://jgabrielgruber.github.io/ObsHard_plat/#/produtos/${item.key}`);
-						};
 					});
 				}
 				const { amountNotifications } = this.state;
