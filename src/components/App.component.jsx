@@ -51,13 +51,23 @@ class App extends React.Component {
 			if (dif.length > 0) {
 				if (Notification.permission === 'granted') {
 					dif.forEach((item) => {
-						const notification = new Notification(item.title, {
-							icon: 'https://jgabrielgruber.github.io/ObsHard_plat/logo192.png',
-							body: item.content,
+						navigator.serviceWorker.getRegistration(`${process.env.PUBLIC_URL}/service-worker-c.js`).then((reg) => {
+							if (reg) {
+								reg.showNotification(item.title, {
+									icon: 'https://jgabrielgruber.github.io/ObsHard_plat/logo192.png',
+									body: item.content,
+									data: {
+										url: `${process.env.PUBLIC_URL}/#/produtos/${item.key}`,
+									},
+									actions: [
+										{
+											action: 'show',
+											title: 'Ver detalhes',
+										},
+									],
+								});
+							}
 						});
-						notification.onclick = () => {
-							window.open(`https://jgabrielgruber.github.io/ObsHard_plat/#/produtos/${item.key}`);
-						};
 					});
 				}
 				const { amountNotifications } = this.state;
@@ -239,7 +249,7 @@ class App extends React.Component {
 			},
 		});
 
-		document.body.style = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'background: #1f1f1f;' : 'background: #FFF;';
+		document.body.style = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'background: #1f1f1f;' : 'background: #F9F9F9;';
 
 		const {
 			accountMenuElement, notiticationMenuElement, isAccountMenuOpen,
