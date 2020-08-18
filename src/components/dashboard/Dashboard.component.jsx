@@ -33,7 +33,7 @@ function DashboardComponent({
 	return (
 		<Container maxWidth="lg">
 			<Grid container spacing={3}>
-				<Grid item xs={12} md={4} lg={3}>
+				<Grid item xs={6} md={4} lg={3}>
 					<Paper className={fixedHeightPaper}>
 						<Typography component="h2" variant="h6" color="primary" gutterBottom>
 							Total de produtos
@@ -48,8 +48,10 @@ function DashboardComponent({
 						</div>
 					</Paper>
 				</Grid>
-				<Grid item xs={12} md={10} lg={8}>
-					<NotificacoesW lojas={lojas} notifications={notifications} produtos={produtos} />
+				<Grid item xs={12} md={8} lg={6}>
+					<Paper className={fixedHeightPaper}>
+						<NotificacoesW lojas={lojas} notifications={notifications} produtos={produtos} />
+					</Paper>
 				</Grid>
 			</Grid>
 		</Container>

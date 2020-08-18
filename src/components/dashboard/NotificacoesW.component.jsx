@@ -19,7 +19,7 @@ function NotificacoesW({
 
 	return (
 		<TableContainer>
-			<Table>
+			<Table stickyHeader size="small">
 				<TableHead>
 					<TableRow>
 						{ Object.keys(collumns).map((k) => <TableCell key={k}>{collumns[k]}</TableCell>) }
