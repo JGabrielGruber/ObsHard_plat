@@ -46,7 +46,7 @@ function NotificacoesW({
 										{new Date((noti.timestamp * 1000)).toLocaleString()}
 									</TableCell>
 								</TableRow>
-							) : <></>;
+							) : null;
 						})
 					}
 				</TableBody>
