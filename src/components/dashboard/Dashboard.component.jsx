@@ -31,30 +31,31 @@ function DashboardComponent({
 	const classes = useStyles();
 	const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 	return (
-		<Container maxWidth="lg">
-			<Grid container spacing={3}>
-				<Grid item xs={6} md={4} lg={3}>
-					<Paper className={fixedHeightPaper}>
-						<Typography component="h2" variant="h6" color="primary" gutterBottom>
-							Total de produtos
-						</Typography>
-						<Typography component="p" variant="h4" className={classes.totalProdutos}>
-							{Object.keys(produtos).length}
-						</Typography>
-						<div>
-							<Button variant="text" color="primary" href="#/produtos" size="small">
-								Ver produtos
-							</Button>
-						</div>
-					</Paper>
-				</Grid>
-				<Grid item xs={12} md={8} lg={6}>
-					<Paper className={fixedHeightPaper}>
-						<NotificacoesW lojas={lojas} notifications={notifications} produtos={produtos} />
-					</Paper>
-				</Grid>
+		<Grid container spacing={4}>
+			<Grid item xs={4} md={4} lg={4}>
+				<Paper className={fixedHeightPaper}>
+					<Typography component="h2" variant="h6" color="primary" gutterBottom>
+						Total de produtos
+					</Typography>
+					<Typography component="p" variant="h4" className={classes.totalProdutos}>
+						{Object.keys(produtos).length}
+					</Typography>
+					<div>
+						<Button variant="text" color="primary" href="#/produtos" size="small">
+							Ver produtos
+						</Button>
+					</div>
+				</Paper>
 			</Grid>
-		</Container>
+			<Grid item xs={8} md={8} lg={8}>
+				<Paper className={fixedHeightPaper}>
+					<Typography component="h2" variant="h6" color="primary" gutterBottom>
+						Alterações
+					</Typography>
+					<NotificacoesW lojas={lojas} notifications={notifications} produtos={produtos} />
+				</Paper>
+			</Grid>
+		</Grid>
 	);
 }
 
