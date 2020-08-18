@@ -2,18 +2,21 @@ import React from 'react';
 
 import ProdutoRepository from '../repositories/Produto.repository';
 import DashboardComponent from '../components/dashboard/Dashboard.component';
+import LojaRepository from '../repositories/Loja.repository';
 
 class DashboardContainer extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			produtos: [],
+			lojas: {},
+			produtos: {},
 		};
 	}
 
 	componentDidMount() {
-		ProdutoRepository.sync('produtos', this.handleChange);
+		LojaRepository.sync('lojas', this.handleList);
+		ProdutoRepository.sync('produtos', this.handleList);
 	}
 
 	handleChange = (key, value, index) => {
@@ -30,13 +33,29 @@ class DashboardContainer extends React.Component {
 		}
 	}
 
+	handleList = (key, value) => {
+		const ar = this.state[key];
+		value.forEach((item) => {
+			ar[item._id] = item;
+		});
+		this.setState({
+			[key]: ar,
+		});
+	}
+
 	render() {
 		const {
-			produtos,
+			lojas, produtos,
 		} = this.state;
+
+		const {
+			notifications,
+		} = this.props;
 
 		return (
 			<DashboardComponent
+				lojas={lojas}
+				notifications={notifications}
 				produtos={produtos}
 			/>
 		);

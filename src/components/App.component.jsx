@@ -308,7 +308,7 @@ class App extends React.Component {
 						<Grid item>
 							<main style={{ paddingLeft: isSideMenuOpen ? 200 : 40 }}>
 								<Switch>
-									<Route path="/dashboard" component={DashboardContainer} />
+									<Route path="/dashboard" render={() => <DashboardContainer notifications={notifications} />} />
 									<Route path="/tabela" component={TabelaContainer} />
 									<Route path="/arquiteturas" component={ArquiteturaContainer} />
 									<Route path="/categorias" component={CategoriaContainer} />
