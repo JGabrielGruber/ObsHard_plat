@@ -2,18 +2,24 @@ import React from 'react';
 
 import ProdutoRepository from '../repositories/Produto.repository';
 import DashboardComponent from '../components/dashboard/Dashboard.component';
+import LojaRepository from '../repositories/Loja.repository';
+import NotificationRepository from '../repositories/Notification.repository';
 
 class DashboardContainer extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			produtos: [],
+			lojas: {},
+			notifications: [],
+			produtos: {},
 		};
 	}
 
 	componentDidMount() {
-		ProdutoRepository.sync('produtos', this.handleChange);
+		LojaRepository.sync('lojas', this.handleList);
+		NotificationRepository.sync('notifications', this.handleChange);
+		ProdutoRepository.sync('produtos', this.handleList);
 	}
 
 	handleChange = (key, value, index) => {
@@ -30,13 +36,25 @@ class DashboardContainer extends React.Component {
 		}
 	}
 
+	handleList = (key, value) => {
+		const ar = this.state[key];
+		value.forEach((item) => {
+			ar[item._id] = item;
+		});
+		this.setState({
+			[key]: ar,
+		});
+	}
+
 	render() {
 		const {
-			produtos,
+			lojas, notifications, produtos,
 		} = this.state;
 
 		return (
 			<DashboardComponent
+				lojas={lojas}
+				notifications={notifications}
 				produtos={produtos}
 			/>
 		);
