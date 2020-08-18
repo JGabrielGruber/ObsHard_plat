@@ -3,7 +3,6 @@ import React from 'react';
 import ProdutoRepository from '../repositories/Produto.repository';
 import DashboardComponent from '../components/dashboard/Dashboard.component';
 import LojaRepository from '../repositories/Loja.repository';
-import NotificationRepository from '../repositories/Notification.repository';
 
 class DashboardContainer extends React.Component {
 	constructor(props) {
@@ -11,14 +10,12 @@ class DashboardContainer extends React.Component {
 
 		this.state = {
 			lojas: {},
-			notifications: [],
 			produtos: {},
 		};
 	}
 
 	componentDidMount() {
 		LojaRepository.sync('lojas', this.handleList);
-		NotificationRepository.sync('notifications', this.handleChange);
 		ProdutoRepository.sync('produtos', this.handleList);
 	}
 
@@ -48,8 +45,12 @@ class DashboardContainer extends React.Component {
 
 	render() {
 		const {
-			lojas, notifications, produtos,
+			lojas, produtos,
 		} = this.state;
+
+		const {
+			notifications,
+		} = this.props;
 
 		return (
 			<DashboardComponent
