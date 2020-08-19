@@ -16,18 +16,16 @@
 <br />
 <p align="center">
   <a href="https://github.com/JGabrielGruber/ObsHard_bot/">
-    <img src="images/logo.png" alt="Logo" height="80">
+    <img src="public/logos512.png" alt="Logo" height="80">
   </a>
 
   <h3 align="center">Plataforma do Observatório de Hardware</h3>
 
   <p align="center">
-    Plataform used to manage the <a href="https://github.com/JGabrielGruber/ObsHard_bot">ObsHard_bot</a>
-    <br />
-    <a href="https://github.com/JGabrielGruber/ObsHard_plat"><strong>Explore the docs »</strong></a>
+    Plataforma de monitoramento de preços de hardware no Brasil, alimentada pelo <a href="https://github.com/JGabrielGruber/ObsHard_bot">ObsHard_bot</a>
     <br />
     <br />
-    <a href="https://github.com/JGabrielGruber/ObsHard_plat">View Demo</a>
+    <a href="https://jgabrielgruber.github.io/ObsHard_plat/#/dashboard">Visit website</a>
     ·
     <a href="https://github.com/JGabrielGruber/ObsHard_plat/issues">Report Bug</a>
     ·
@@ -57,13 +55,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Screenshot do Dashboard][product-screenshot]](https://example.com)
 
 **_TO-DO_**
 
 ### Built With
 <!-- This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.-->
 * [ReactJS](https://reactjs.org)
+* [Material-UI](https://material-ui.com)
 
 
 
@@ -126,25 +125,6 @@ Distributed under the AGPLv3 License. See the [License](LICENSE) for more inform
 José Gabriel Gruber - [@JGabrielGruber](https://twitter.com/JGabrielGruber) - jgabrielgruber@hotmail.com
 
 Project Link: [https://github.com/JGabrielGruber/ObsHard_plat](https://github.com/JGabrielGruber/ObsHard_plat)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-**_TO-DO_**
-
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
 
 
 
