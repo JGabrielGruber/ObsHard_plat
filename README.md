@@ -16,7 +16,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/JGabrielGruber/ObsHard_bot/">
-    <img src="public/logos512.png" alt="Logo" height="80">
+    <img src="public/logo512.png" alt="Logo" height="80">
   </a>
 
   <h3 align="center">Plataforma do Observatório de Hardware</h3>
