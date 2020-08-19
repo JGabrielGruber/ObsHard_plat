@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-	Container, Grid, Paper, Typography, Button,
+	Grid, Paper, Typography, Button,
 } from '@material-ui/core';
 import Produto from '../../models/Produto.model';
 import Loja from '../../models/Loja.model';
