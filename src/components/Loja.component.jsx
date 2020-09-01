@@ -16,6 +16,7 @@ export default class LojaComponent extends React.Component {
 
 		const columns = [
 			{ title: 'Nome', field: 'nome' },
+			{ title: 'Buscar', field: 'buscar', type: 'boolean', default: true },
 			{ title: 'Tag', field: 'tag' },
 			{ title: 'Propriedade', field: 'propriedade' },
 			{ title: 'Atributo', field: 'atributo' },
