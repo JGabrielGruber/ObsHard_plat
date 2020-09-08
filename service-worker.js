@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ObsHard_plat/precache-manifest.968ae9d88b32c1c5f92ae97aa0e5b001.js"
+  "/ObsHard_plat/precache-manifest.82c3572290b3547dd089ce4c31ae6afd.js"
 );
 
 self.addEventListener('message', (event) => {
