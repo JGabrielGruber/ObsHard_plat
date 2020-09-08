@@ -1,9 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import {
-	Grid, Paper, Typography, Link, withStyles,
+	Grid, Paper, Typography, Link, withStyles, makeStyles,
 } from '@material-ui/core';
 import {
 	MuiPickersUtilsProvider, DatePicker,
@@ -14,7 +13,7 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import WarningIcon from '@material-ui/icons/Warning';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
 import {
-	BarChart, Bar, LabelList,
+	BarChart, Bar, LabelList, ResponsiveContainer,
 } from 'recharts';
 import Produto from '../../models/Produto.model';
 import Loja from '../../models/Loja.model';
@@ -43,13 +42,37 @@ const styles = (theme) => ({
 		fontSize: theme.typography.fontSize.valueOf() * 2.2,
 		flex: 1,
 	},
+	bar: {
+		fill: theme.palette.primary.light,
+	},
 });
+
+const useStyle = makeStyles((theme) => ({
+	label: {
+		fontFamily: 'Roboto',
+		fontWeight: 'bold',
+		fill: theme.palette.text.primary,
+	},
+}));
 
 const BotIcon = ({ ...pr }) => {
 	switch ('a') {
 	default:
 		return (<HourglassFullIcon {...pr} />);
 	}
+};
+
+const CustomLabel = ({
+	x, y, width, height, value,
+}) => {
+	const classes = useStyle();
+	return (
+		<g>
+			<text x={x + width / 2} y={y - (height * 0.05)} textAnchor="middle" dominantBaseline="middle" className={classes.label}>
+				{value}
+			</text>
+		</g>
+	);
 };
 
 class DashboardComponent extends React.Component {
@@ -166,31 +189,31 @@ class DashboardComponent extends React.Component {
 						</Grid>
 						<Grid item xs={12} md={12} lg={12}>
 							<Paper className={calendar}>
-								<BarChart
-									width={100}
-									height={100}
-									data={[
-										{
-											name: 'Page A',
-											uv: 4000,
-											pv: 2400,
-											amt: 2400,
-										},
-										{
-											name: 'Page B',
-											uv: 3000,
-											pv: 1398,
-											amt: 2210,
-										},
-									]}
-									margin={{
-										top: 15, bottom: 5,
-									}}
-								>
-									<Bar dataKey="pv" fill="#8884d8" isAnimationActive={false}>
-										<LabelList dataKey="name" position="top" />
-									</Bar>
-								</BarChart>
+								<ResponsiveContainer>
+									<BarChart
+										data={[
+											{
+												name: 'Produto A',
+												uv: 4000,
+												pv: 2400,
+												amt: 2400,
+											},
+											{
+												name: 'Produto B',
+												uv: 3000,
+												pv: 1398,
+												amt: 2210,
+											},
+										]}
+										margin={{
+											top: 30, bottom: 5,
+										}}
+									>
+										<Bar dataKey="pv" className={classes.bar} isAnimationActive={false}>
+											<LabelList dataKey="name" position="top" content={CustomLabel} />
+										</Bar>
+									</BarChart>
+								</ResponsiveContainer>
 							</Paper>
 						</Grid>
 					</Grid>
